@@ -1,6 +1,5 @@
 text = "1 2 3 4 664 112 89 43 -12"
-lst = text.split()
 
-lst = [int(i) for i in lst]
+lst = [int(i) for i in text.split()]
 print(lst)
 print(sum(lst))
