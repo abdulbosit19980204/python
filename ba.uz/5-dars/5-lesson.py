@@ -24,17 +24,14 @@
 """Next"""
 
 n = int(input())
+print(n, "! = ", sep="", end="")
+
 s = 1
-a=[]
 for i in range(1, n + 1):
-    a.append(str(i))
     s = s * i
-text ="1"
-for i in range(2,n+1):
-     text += "*"+str(i)
+    print(i, end=" * ")
 
-print(str(n)+"! = "+text + " = "+str(s) )
-
+print("\b\b=", s)
 
 """
 5! = 1 * 2 * 3 * 4 * 5 = 120
