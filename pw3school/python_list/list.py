@@ -46,3 +46,6 @@ conList = list(("appel", "banan","shakar"))
 print(conList) #['appel', 'banan', 'shakar']
 
 
+# my_list = [i for i in range(0,11,1)]
+# print(my_list)
+
