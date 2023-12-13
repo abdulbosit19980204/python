@@ -38,15 +38,15 @@
 #        if n >= 2:
 #            even_numbers(n - 1)
 #        print(n, end=" ")
-
-def even_numbers(n):
-    if n > 1:
-        if n % 2 == 0:
-            print(n, end=" ")
-        even_numbers(n - 1)
-
-
-even_numbers(int(input()))
+#
+# def even_numbers(n):
+#     if n > 1:
+#         if n % 2 == 0:
+#             print(n, end=" ")
+#         even_numbers(n - 1)
+#
+#
+# even_numbers(int(input()))
 
 # def odd_numbers(n):
 #     print(n)
@@ -55,3 +55,28 @@ even_numbers(int(input()))
 #     print(n)
 #
 # odd_numbers(10)
+
+
+
+# def pr_numbers(n):
+#     if n > 1:
+#         pr_numbers(n - 1)
+#     if n % 2 == 0:
+#         print(n)
+#
+#
+# pr_numbers(600)
+# s=0
+# def sums(n):
+#     if n==1:
+#         return 1
+#     return n+sums(n-1)
+# sums(3)
+
+def summ(n):
+    if n == 1:
+        return 1
+    return n + summ(n - 1)
+
+
+print(summ(10))
