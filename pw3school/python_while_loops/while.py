@@ -52,3 +52,6 @@ while i<6:
 else:
     print("i is no longer less than 6")
 #1 2 3 4 5 i is no longer less than 6
+
+# print(ord("A"))
+# print(ord("a"))
