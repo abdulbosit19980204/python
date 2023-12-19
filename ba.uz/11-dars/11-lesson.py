@@ -30,12 +30,13 @@
 #     print(n, s)
 
 
-word_list = ["apple", "banana", "nasjdn", "sndjknsdjfn", "ojdjna asdjnajosnd aksdias", "jdjnja asskmas"]
+word_list = ["apple", "banana", "nasjdn", "sndjknsdjfn","hi", "ojdjna asdjnajosnd aksdias", "jdjnja asskmas"]
 
 
 def cmp(x):
-    return -len(x)
-
+    # txt = x.split()
+    # return len(txt)
+    return x.count(" ")+1
 
 word_list.sort(key=cmp)
 print(word_list)
