@@ -29,15 +29,50 @@
 #             s += 1
 #     print(n, s)
 
+#
+# word_list = ["apple", "banana", "nasjdn", "sndjknsdjfn","hi", "ojdjna asdjnajosnd aksdias", "jdjnja asskmas"]
+#
+#
+# def cmp(x):
+#     # txt = x.split()
+#     # return len(txt)
+#     return x.count(" ")+1
+#
+# word_list.sort(key=cmp)
+# print(word_list)
+#
 
-word_list = ["apple", "banana", "nasjdn", "sndjknsdjfn","hi", "ojdjna asdjnajosnd aksdias", "jdjnja asskmas"]
 
+# *************************************
 
+import random
 def cmp(x):
-    # txt = x.split()
-    # return len(txt)
-    return x.count(" ")+1
+    print(x["avg"])
+    return x["avg"]
+d = {
+    "students": [
+        {
+            "name": "Abbb",
+            "email": "sdjknjsd@sdf.asd",
+            "avg": random.randint(1, 100)
+        },
+        {
+            "name": "Sfff",
+            "email": "sdjknjsd@sdf.asd",
+            "avg": random.randint(1, 100)
+        },
+        {
+            "name": "Bsss",
+            "email": "sdjknjsd@sdf.asd",
+            "avg": random.randint(1, 100)
+        },
+    ]
+}
 
-word_list.sort(key=cmp)
-print(word_list)
+answer = input("Studentlarni avg bo'yicha o'sish tartibida chiqarmoqchimisiz(ha/yo'q): ")
+if answer == "ha":
+        d["students"].sort(key=cmp)
+print(d["students"])
+
+# ************************************
 
