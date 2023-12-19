@@ -2,13 +2,9 @@
 
 # You can change the value of a specific item by referring to its key name
 # change the "age"
-thisDict = {
-    "firstName": "John",
-    "lastName": "Doe",
-    "age": 25
-}
 
-thisDict["age"] = 35
+thisDict = {"firstName": "John", "lastName": "Doe", "age": 35}
+
 print(thisDict)  # {'firstName': 'John', 'lastName': 'Doe', 'age': 35}
 
 # Update Dictionary
@@ -18,3 +14,4 @@ print(thisDict)  # {'firstName': 'John', 'lastName': 'Doe', 'age': 35}
 
 thisDict.update({"firstName": "Jeck"})
 print(thisDict) #{'firstName': 'Jeck', 'lastName': 'Doe', 'age': 35}
+
