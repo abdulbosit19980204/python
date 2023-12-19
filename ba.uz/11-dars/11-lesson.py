@@ -22,6 +22,7 @@ def cmp(n):
 lst = [5, 12, 85, 23, 34, 78]
 lst.sort(key=cmp)
 print(lst)
+
 # for n in lst:
 #     s=0
 #     for j in range(1, n+1):
