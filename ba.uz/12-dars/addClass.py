@@ -7,12 +7,12 @@ class Person:
     def print_info(self):
         print(f"name: {self.name}, age: {self.age}")
 
-    def __str__(self):
-        return f"<name: {self.name}, age: {self.age}>"
 
     def __add__(self, other):
         return self.name+" "+other.name , self.age+other.age
 
+ def __str__(self):
+        return f"<name: {self.name}, age: {self.age}>"
 
 
 
