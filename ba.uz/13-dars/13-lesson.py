@@ -39,5 +39,8 @@ class Laptop(Phone):
 phone1 = Phone("iPhone 15", 1500, 25, 6, "black")
 laptop = Laptop("LENOVO", 650, 5, 4, "balck", "core i3", "China")
 print("Over all price: ", phone1.all_price())
-
+print("*"*80)
+phone1.info()
+print("*"*80)
 laptop.info()
+print("*"*80)
