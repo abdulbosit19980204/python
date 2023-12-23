@@ -39,7 +39,7 @@ sortType = input("input the sroted type price/phoneMark/name: ")
 if sortType not in ["price", "phoneMark", "name"]:
     print("Make sure it is correct, there isn't such field")
     raise ValueError("You need to input one of this price/phoneMark/name: ")
-lst.sort(key=lambda x:getattr(x, sortType) )
+lst.sort(key=lambda x: getattr(x, sortType))
 # the getattr() function will be used to dynamically access the attribute specified by sortType for each MobileShop object in the list.
 # lst.sort(key=lambda x: x.price)
 print(lst)
