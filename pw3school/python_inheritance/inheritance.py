@@ -10,7 +10,7 @@
 
 # Create a class named Person, with firstname, lastname properties and a printname method:
 
-class Person():
+class Person:
     def __init__(self, firstname, lastname):
         self.firstname = firstname
         self.lastname = lastname
@@ -86,7 +86,8 @@ student4 = Student4("Abdulbosit", "Tuychiev")
 print(student4.firstname, student4.graduationyear)  # Abdulbosit 2020
 
 
-# In the example below, the year 2019 should be a variable, and passed into the Student class when creating student objects
+# In the example below, the year 2019 should be a variable, and passed into the Student class when creating student
+# objects
 # To do so, add another parameter  in the __init__() function
 
 # Add a year parameter , and pass the correct year when creating objects
@@ -110,7 +111,6 @@ class Student6(Person):
     def welcome(self):
         print(f"Hello {self.firstname}  {self.lastname} welcome to {self.graduationyear} the graduation ceremony")
 
-student6=Student6("Abdulbosit", "Tuychiev" ,2025)
-student6.welcome() #Hello Abdulbosit  Tuychiev welcome to 2025 the graduation ceremony
 
-
+student6 = Student6("Abdulbosit", "Tuychiev", 2025)
+student6.welcome()  # Hello Abdulbosit  Tuychiev welcome to 2025 the graduation ceremony

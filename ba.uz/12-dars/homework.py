@@ -18,6 +18,10 @@ class MobileShop():
     def __repr__(self):
         return f"<Mobile shop: name={self.name}, phoneMark={self.phoneMark}, price={self.price}, quantity={self.quantity}>"
 
+    @staticmethod
+    def tax(quantity, price):
+        return quantity * 0.12 * price
+
 
 shop1 = MobileShop("Olcha.uz", "iPhone 14 Pro", 14940000, 25)
 print(shop1)  # Welcome to Mobile shop
@@ -38,10 +42,11 @@ print(lst)
 sortType = input("input the sroted type price/phoneMark/name: ")
 if sortType not in ["price", "phoneMark", "name"]:
     print("Make sure it is correct, there isn't such field")
-    raise ValueError("You need to input one of this price/phoneMark/name: ")
+    raise ValueError("You need to input one of these price/phoneMark/name: ")
 
 lst.sort(key=lambda x: getattr(x, sortType))
 # the getattr() function will be used to dynamically access the attribute specified by sortType.
 # lst.sort(key=lambda x: x.price)
 print(lst)
-
+print("You have about ", lst[0].tax(lst[0].quantity, lst[0].price), " sum tax")
+# You have about  139779603.6  sum tax
