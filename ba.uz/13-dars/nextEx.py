@@ -25,9 +25,11 @@ class Phone(Item):
         return self.price * self.quantity
 
 
-class Laptop(Phone):
+class Laptop(Item, Phone):
     def __init__(self, name, price, quantity, ram, color, model, made):
-        super().__init__(name, price, quantity, ram, color)
+        # super().__init__(name, price, quantity, ram, color)
+        Item.__init__(self, name, price, quantity)
+        Phone.__init__(self, ram, color)
         self.model = model
         self.made = made
 
