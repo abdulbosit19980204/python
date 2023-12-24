@@ -10,6 +10,8 @@ API_URL = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}&text=ishlar yax
 respose = requests.get(API_URL)
 print(respose.json())
 
+
+
 """
 {'ok': True, 'result': {'id': 6189703946, 'is_bot': True, 'first_name': 'tmscoder', 
 'username': 'tmscoderbot', 'can_join_groups': True, 'can_read_all_group_messages': False,
@@ -20,7 +22,7 @@ print(respose.json())
 {'ok': True, 'result': [{'update_id': 389398452,
  'message': {'message_id': 136, 'from':
   {'id': 1209619850, 'is_bot': False, 'first_name': "To'ychiyev Abdulbosit (عبد الباسط)",
-   'username': 'abdulbosit_tatu', 'language_code': 'en'},
+    'username': 'abdulbosit_tatu', 'language_code': 'en'},
     'chat': {'id': 1209619850, 'first_name': 
     "To'ychiyev Abdulbosit (عبد الباسط)", 
     'username': 'abdulbosit_tatu', 'type': 'private'}, 
