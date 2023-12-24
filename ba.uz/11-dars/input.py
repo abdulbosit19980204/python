@@ -58,3 +58,18 @@ execute ping
 write nya
 
 """
+"""
+4
+helloworld.exe R X
+pinglog W R
+nya R
+goodluck X W R
+5
+read nya
+write helloworld.exe
+execute nya
+read pinglog
+write pinglog
+"""
+
+
