@@ -59,5 +59,5 @@ from mymodule import person1
 
 print(person1["name"], person1["surname"], person1["birthday"])  # Abdulbosit Tuychiev 1970-01-01
 
-# Note: When importing using the from keyword, do not use the module name when referring to elements, in the module.
+# Note: When importing using the "from" keyword, do not use the module name when referring to elements, in the module.
 # Example: person1["name"] , not mymodule.person1["name"]
