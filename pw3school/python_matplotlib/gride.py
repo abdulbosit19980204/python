@@ -29,6 +29,6 @@ plt.show()
 
 # Set Line Properties for the Grid
 # You can also set the line properties of the grid, like this.
-plt.plot(x,y)
+plt.plot(x, y)
 plt.grid(color='red', linestyle='--', linewidth=2)
 plt.show()
