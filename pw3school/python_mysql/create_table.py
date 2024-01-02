@@ -34,4 +34,3 @@ for table in mycursor:
 
 # Create primary key on  an existing table
 # mycursor.execute("ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY")
-
