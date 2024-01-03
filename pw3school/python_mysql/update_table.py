@@ -60,4 +60,3 @@ val = ("Valley 345", "Canyon 123")
 cursor.execute(sql, val)
 db.commit()
 print(cursor.rowcount, "record(s) affected")
-
