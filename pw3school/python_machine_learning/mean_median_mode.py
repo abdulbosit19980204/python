@@ -41,7 +41,7 @@ print(x)
 # Use the SciPy mode() method to find the number that appears the most
 from scipy import stats
 
-speed = [99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86, 87, 88, 87]
+speed = [99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 87, 86]
 
 x = stats.mode(speed)
 
@@ -50,3 +50,4 @@ print(x)
 # Chapter Summary
 # The Mean, Median, and Mode are techniques that are often used in Machine Learning, so it is important to understand
 # the concept behind them
+
