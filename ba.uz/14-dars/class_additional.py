@@ -7,6 +7,9 @@ class Car:
     def __str__(self):
         return f"Name: {self.name}, Color: {self.color}"
 
+    # def __repr__(self):
+    #     return f"Name: {self.name}, Color: {self}"
+
 
 class NewCar(Car):
     def __init__(self, name, color, price, year, km):
@@ -25,3 +28,6 @@ car1.year = 2022
 car1.km = 1000
 car1.price = 41000
 print(car1)
+
+lst = [car1, car1, car1, car1]
+print(*lst)
