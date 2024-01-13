@@ -103,10 +103,10 @@ so it defines its own logic for indexing, allowing us to index by a tuple to spe
 # When does 1 + 1 not equal 2?
 # Things can get weirder than this. You may have heard of (or even used) tensorflow,
 # a Python library popularly used for deep learning. It makes extensive use of operator overloading.
-import tensorflow as tf
-
-# Create two constants, each with value 1
-a = tf.constant(1)
-b = tf.constant(1)
-# Add them together to get...
-a + b
+# import tensorflow as tf
+#
+# # Create two constants, each with value 1
+# a = tf.constant(1)
+# b = tf.constant(1)
+# # Add them together to get...
+# a + b
