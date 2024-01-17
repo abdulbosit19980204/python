@@ -9,15 +9,31 @@
 
 # Print the elements of the resulting array.
 
-n = int(input())
-a = [[j for j in range(n)] for i in range(n)]
+# n = int(input())
+# a = [[j for j in range(n)] for i in range(n)]
+#
+# for i in range(n):
+#     for j in range(n):
+#         if i == j:
+#             a[i][j] = 0
+#
+# for i in a:
+#     print(i)
 
 
-for i in range(n):
-    for j in range(n):
-        if i == j:
-            a[i][j] = 0
+# ***************************************************************************
+def generate_array(n):
+    array = [[abs(i - j) for j in range(n)] for i in range(n)]
+    for row in array:
+        # print(" ".join(map(str, row)))
+        print(' '.join([str(i) for i in row]))
 
 
-for i in a:
-    print(i)
+generate_array(int(input()))
+# ******************************************************************************
+n = 5
+array = [[abs(i - j) for j in range(n)] for i in range(n)]
+print(array)
+for row in array:
+    # print(" ".join(map(str, row)))
+    print(' '.join([str(i) for i in row]))
