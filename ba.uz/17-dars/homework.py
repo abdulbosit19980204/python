@@ -20,7 +20,7 @@ a = [input().split() for _ in range(n)]
 
 def rotate_matrix(matrix):
     rotated = list(zip(*matrix))
-    print(rotated)
+    # print(rotated)
     for row in rotated:
         print(" ".join(map(str, row)))
 
