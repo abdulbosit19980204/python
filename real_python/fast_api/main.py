@@ -52,3 +52,13 @@ async def root():
 @app.trace("/")
 async def root():
     return {"message": "Post"}
+
+
+@app.get("/items/{item_id}")
+async def red_item(item_id):
+    return {"item_id": item_id}
+
+
+@app.get("/items/int/{item_int_id}")
+async def red_item(item_int_id: int):
+    return {"item_id": item_int_id}
