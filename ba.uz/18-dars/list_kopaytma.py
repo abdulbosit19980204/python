@@ -5,3 +5,5 @@ for i in range(len(lst)):
     kopaytma *= lst[i]
 print(kopaytma)
 
+
+
