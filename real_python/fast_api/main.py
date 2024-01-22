@@ -1,5 +1,6 @@
 # main.py
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -67,3 +68,19 @@ async def red_item(item_int_id: int):
 @app.get("/file/{file_path:path}")
 async def red_item(file_path: str):
     return {"file_path": file_path}
+
+
+# from fastapi import FastAPI
+
+
+class Auth(BaseModel):
+    login: str
+    password: str
+
+
+# app = FastAPI()
+@app.post("/auth/")
+
+
+async def create_user(auth: Auth):
+    return auth
