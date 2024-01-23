@@ -104,3 +104,8 @@ async def read_user(user_id: str):
 # Otherwise, the path for /users/{user_id} would also match for /users/me,
 # thinking that it’s receiving the parameter user_id with a value of "me".
 
+# Automatic Documentation With pydantic
+
+# The JSON Schemas of your pydantic models will be part of the OpenAPI generated for your application and will be shown
+# in the interactive API documentation
+
