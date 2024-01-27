@@ -22,3 +22,4 @@ nexia = Car("Nexia", "grey")
 nexia.get_info()
 nexia.set_petrol(4)
 print(nexia.rasxod)
+
