@@ -1,12 +1,22 @@
-# ekub: 12: 2, 3 || 14: 2,7
-
-def tub(n, b=1):
-    if b > n:
+def power(a, n=2, c=0):
+    if a == 1:
+        print_power(n, c)
         return
+    if a % n == 0:
+        c += 1
+        a /= n
+    else:
+        print_power(n, c)
+        n += 1
+        c = 0
+    return power(a, n, c)
 
-    if s % k == 0:
-        print(b, end=" ")
-    tub(n, b + 1)
+
+def print_power(n, c):
+    if c == 1:
+        print(n, end=" ")
+    elif c > 1:
+        print(f"{n} ^ {c}", end=" ")
 
 
-tub(24)
+power(4268880)
