@@ -6,3 +6,4 @@
 # manager, becouse conda is also  an environment manager. With just few commands, you can  set up a totally  seperate
 # environment to run that different version of Python, while contuining to run your usual version of Python in your
 # normal environment
+
