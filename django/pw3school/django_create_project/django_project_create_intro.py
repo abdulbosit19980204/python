@@ -5,7 +5,7 @@
 # navigate to where in the file system you want to store the code (in the virtual environment),
 # I will navigate to the myworld folder, and run this command prompt:
 
-# django_admin startproject my_tennis_club
+# django-admin startproject my_tennis_club
 
 # Django creates a my_tennis_club folder on my computer, with this content:
 
