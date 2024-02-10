@@ -42,3 +42,5 @@ created environment.
 """
 
 # python -m venv venv
+
+# Reinstalling pip when error ocurs
