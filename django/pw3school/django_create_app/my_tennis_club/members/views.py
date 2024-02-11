@@ -2,5 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def members(request):
+def hello(request):
     return HttpResponse("Hello world!")
+
+
+def salom(request):
+    return HttpResponse("Assalomu alaykum")
