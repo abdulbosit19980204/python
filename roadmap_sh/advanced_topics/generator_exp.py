@@ -69,13 +69,15 @@ square_generator = (n ** 2 for n in range(5))
 
 # A list comprehension is eager while a generator expression is lazy
 
-# In other words, a list comprehesion creates alle elments right away and loads all of them into the memory.
+# In other words, a list comprehension creates alle elements right away and loads all of them into the memory.
 
-# Comversely, a generator expression creates a single element based on request. It loads only one single element to the memory
+# Conversely, a generator expression creates a single element based on request.
+# It loads only one single element to the memory
 
 # 3) Iterable vs iterator
 
-# A list comprehension returns an iterable. Int means that you can iterate over the result of a list comprehension again and again.
+# A list comprehension returns an iterable.
+# Int means that you can iterate over the result of a list comprehension again and again.
 # However, a generator expression returns an iterator, specifically a lazy iterator.
 # It becomes exhausting when you complete iterating over it
 
