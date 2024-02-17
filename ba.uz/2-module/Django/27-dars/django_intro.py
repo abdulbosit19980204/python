@@ -32,3 +32,5 @@ import django
 # 8. views
 
 # this file get request from user
+
+
