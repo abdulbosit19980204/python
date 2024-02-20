@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+
 from .models import Articles
+
+articles = Articles.objects.all()
 
 
 def home_view(request):
@@ -7,7 +10,6 @@ def home_view(request):
 
 
 def articles_view(request):
-    articles = Articles.objects.all()
     d = {
         "articles": articles,
         "message": "Articles are loading...",
@@ -15,5 +17,13 @@ def articles_view(request):
     return render(request, "articles.html", context=d)
 
 
-def article_views(request):
-    return render(request, "article.html")
+def article_views(request, article_id):
+    d = {
+        "article": articles[article_id - 1],
+        "message": "Article send to front",
+    }
+    return render(request, "article.html", context=d)
+
+
+def article_id(request, a_id):
+    return HttpResponse("Your request is: " + str(a_id))
