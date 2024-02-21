@@ -70,3 +70,4 @@
 {% endblock %}
 """
 
+# If the server is down, you have to start it again with the runserver command:
