@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Articles
+
 
 # Create your views here.
 
@@ -8,7 +10,12 @@ def home_view(request):
 
 
 def blog_view(request):
-    return render(request, 'blog.html')
+    articles = Articles.objects.all()
+    d = {
+        "articles": articles[::-1],
+        "message": "Articles are loading...",
+    }
+    return render(request, "blog.html", context=d)
 
 
 def about_view(request):
