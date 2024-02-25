@@ -9,8 +9,8 @@ class Articles(models.Model):
     view_count = models.IntegerField(default=0)
     creator = models.CharField(max_length=120)
     creator_title = models.CharField(max_length=120)
-    creator_image = models.CharField(max_length=4000)
-    article_title_image = models.CharField(max_length=4000)
+    creator_image = models.ImageField(upload_to='users/image/')
+    article_title_image = models.ImageField(upload_to='posts/image/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

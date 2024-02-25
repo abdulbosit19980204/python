@@ -18,6 +18,15 @@ def blog_view(request):
     return render(request, "blog.html", context=d)
 
 
+def blog_info(request, pk):
+    article = Articles.objects.get(id=pk)
+    d = {
+        'article': article
+    }
+    print(d)
+    return render(request, 'blog-single.html', context=d)
+
+
 def about_view(request):
     return render(request, 'about.html')
 
