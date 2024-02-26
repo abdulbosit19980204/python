@@ -6,7 +6,11 @@ from .models import Articles
 # Create your views here.
 
 def home_view(request):
-    return render(request, 'index.html')
+    articles = Articles.objects.all()
+    d = {
+        "articles": articles[::-1]
+    }
+    return render(request, 'index.html', context=d)
 
 
 def blog_view(request):

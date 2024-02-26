@@ -35,41 +35,43 @@ Home
 <section class="ftco-section ftco-no-pb ftco-no-pt">
     <div class="container-fluid px-md-4">
         <div class="row no-gutters">
-
+            {% for article in articles %}
+            {% if article.id|divisibleby:2 %}
             <div class="col-md-12 blog-wrap">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 img img-blog js-fullheight"
-                         style="background-image: url({% static 'images/image_1.jpg' %});">
+                         style="background-image: url({{article.article_title_image.url}});">
                     </div>
                     <div class="col-md-6">
                         <div class="text p-md-5 py-5 px-4 ftco-animate">
                             <p class="meta">
-                                <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 27, 2020</a>
+                                <a href="#"><span class="fa fa-calendar mr-2"></span>{{article.created_at}}</a>
                                 <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
                                 <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
                             </p>
                             <h2 class="mb-4"><a href="blog-single.html">Turning a digital brand into a real world
                                 experience</a></h2>
                             <div class="icon d-flex align-items-center">
-                                <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                                <div class="img" style="background-image: url({{article.creator_image.url}});"></div>
                                 <div class="position pl-3">
-                                    <h4 class="mb-0">Jamie Jonson</h4>
-                                    <span>CEO, Product Designer</span>
+                                    <h4 class="mb-0">{{article.creator}}</h4>
+                                    <span>{{article.creator_title}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% else %}
             <div class="col-md-12 blog-wrap bg-darken">
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6 img img-blog js-fullheight order-md-last"
-                         style="background-image: url({% static 'images/image_2.jpg' %});">
+                         style="background-image: url({{ article.article_title_image.url}});">
                     </div>
                     <div class="col-md-6">
                         <div class="text p-md-5 py-5 px-4 ftco-animate">
                             <p class="meta">
-                                <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 27, 2020</a>
+                                <a href="#"><span class="fa fa-calendar mr-2"></span>{{article.created_at}}</a>
                                 <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
                                 <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
                             </p>
@@ -77,17 +79,18 @@ Home
                                 experience</a></h2>
                             <div class="icon d-flex align-items-center">
                                 <div class="img"
-                                     style="background-image: url({% static 'images/person_2.jpg' %});"></div>
+                                     style="background-image: url({{article.creator_image.url}});"></div>
                                 <div class="position pl-3">
-                                    <h4 class="mb-0">Jamie Jonson</h4>
-                                    <span>CEO, Product Designer</span>
+                                    <h4 class="mb-0">{{article.creator}}</h4>
+                                    <span>{{article.creator_title}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            {% endif %}
+            {% endfor %}
         </div>
         <div class="row py-5">
             <div class="col-md-12 py-md-5 text-center">
