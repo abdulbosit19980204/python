@@ -30,8 +30,8 @@ plt.plot(x, y)
 plt.show()
 
 # The subplot() Function
-# The subplot() functon takes three arguments that describes the layout of the figure
-# The layout is organized in rows and columns, which are represented by the first and second argument
+# The subplot() functon takes three arguments that describes the layouts of the figure
+# The layouts is organized in rows and columns, which are represented by the first and second argument
 # The third argument represents the index of the current plot
 
 plt.subplot(1, 2, 1)

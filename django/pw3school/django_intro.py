@@ -13,7 +13,7 @@
 
 # Model - The data you want to present, usually data from a database
 # View - A request handler that returns the relevant template and content - based on the request from the user
-# Template - A text file (like HTML file) containing the layout of the web page, with logic on how to display the data
+# Template - A text file (like HTML file) containing the layouts of the web page, with logic on how to display the data
 
 # Model
 
@@ -36,7 +36,7 @@
 
 # A template is a file where you describe how the result should be represented.
 # Templates are often .html files, but it can be in other file formats to present other results
-# Django uses standard HTML to describe the layout, but uses Django tags to add logic
+# Django uses standard HTML to describe the layouts, but uses Django tags to add logic
 
 # <h1>My Django template</h1>
 # <p> My name is {{firstname}}.</p>

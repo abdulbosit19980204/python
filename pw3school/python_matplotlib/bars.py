@@ -10,7 +10,7 @@ y = np.array([10, 20, 8, 12])
 plt.bar(x, y)
 plt.show()
 
-# The bar() function takes arguments that describes the layout of the bars
+# The bar() function takes arguments that describes the layouts of the bars
 # The categories and their values represented by the first and second arguments as array
 titles = np.array(["apples", "bananas", "oranges", "grapes"])
 price = np.array([8000, 15000, 40000, 15000])
