@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Articles
+from .models import Articles, ContactUs
 
 
 # Create your views here.
@@ -36,4 +36,9 @@ def about_view(request):
 
 
 def contact_view(request):
+    if request.method == "POST":
+        data = request.POST
+        obj = ContactUs.objects.create(fullName=data['name'], email=data['email'], subject=data['subject'],
+                                       message=data['message'])
+        obj.save()
     return render(request, 'contact.html')
