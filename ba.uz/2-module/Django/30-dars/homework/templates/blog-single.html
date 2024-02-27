@@ -69,7 +69,7 @@
                                         <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
-                                        <h3>John Doe</h3>
+                                        <h3>{{comment.commentor_name}}</h3>
                                         <div class="meta">{{comment.created_at}}</div>
                                         <p>{{comment.comment_message}}</p>
                                         <p><a href="#" class="reply">Reply</a></p>

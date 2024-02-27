@@ -16,7 +16,12 @@ class ArticlesAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'title', 'creator')
 
 
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'commentor_name', 'commentor_email', 'is_Visable', 'article_id')
+    list_display_links = ('id', 'commentor_name', 'commentor_email')
+
+
 admin.site.register(Articles, ArticlesAdmin)
 admin.site.register(ContactUs, ContactAdmin)
-admin.site.register(Comments)
+admin.site.register(Comments, CommentsAdmin)
 admin.site.register(Subscribers)
