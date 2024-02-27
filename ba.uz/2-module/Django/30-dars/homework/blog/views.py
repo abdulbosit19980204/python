@@ -6,7 +6,7 @@ from .models import Articles
 # Create your views here.
 
 def home_view(request):
-    articles = Articles.objects.all()
+    articles = Articles.objects.filter(main_page=True)
     d = {
         "articles": articles[::-1]
     }

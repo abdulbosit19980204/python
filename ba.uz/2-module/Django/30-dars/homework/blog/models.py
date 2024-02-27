@@ -13,6 +13,17 @@ class Articles(models.Model):
     article_title_image = models.ImageField(upload_to='posts/image/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    main_page = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
+
+
+class ContactUs(models.Model):
+    fullName = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    subject = models.CharField(max_length=400)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.fullName
