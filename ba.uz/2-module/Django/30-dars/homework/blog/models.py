@@ -31,3 +31,21 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return self.fullName
+
+
+class Comments(models.Model):
+    commentor_name = models.CharField(max_length=200)
+    comment_message = models.TextField()
+    commentor_email = models.EmailField()
+    commentor_website = models.CharField(max_length=500, blank=True, null=True)
+    article_id = models.IntegerField()
+    is_Visable = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.commentor_name
+
+
+class Subscribers(models.Model):
+    subscriber_email = models.EmailField()

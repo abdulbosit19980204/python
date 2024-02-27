@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home_view, about_view, contact_view, blog_view, blog_info
+from .views import home_view, about_view, contact_view, blog_view, blog_info, subscribes
 
 urlpatterns = [
     path('', home_view),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('about/', about_view),
     path('contact', contact_view),
     path('blog/<int:pk>', blog_info),
+    path('subscribes/', subscribes),
 ]

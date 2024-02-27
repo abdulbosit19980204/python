@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Articles, ContactUs
+from .models import Articles, ContactUs, Comments, Subscribers
 
 
 # Create your views here.
@@ -23,9 +23,17 @@ def blog_view(request):
 
 
 def blog_info(request, pk):
+    if request.method == "POST":
+        comment = request.POST
+        obj = Comments.objects.create(commentor_name=comment['name'], comment_message=comment['message'],
+                                      commentor_email=comment['email'], commentor_website=comment['website'],
+                                      article_id=pk)
+        obj.save()
     article = Articles.objects.get(id=pk)
+    comments = Comments.objects.filter(article_id=pk, is_Visable=True)
     d = {
-        'article': article
+        'article': article,
+        'comments': comments
     }
     print(d)
     return render(request, 'blog-single.html', context=d)
@@ -42,3 +50,15 @@ def contact_view(request):
                                        message=data['message'])
         obj.save()
     return render(request, 'contact.html')
+
+
+def subscribes(request):
+    if request.method == "POST":
+        print("==" * 50)
+        print(request)
+        print('==' * 50)
+    # subEmail = request.POST
+    # obj = Subscribers.objects.create(subscriber_email=subEmail['email'])
+    # obj.save()
+
+    return render(request, 'index.html')

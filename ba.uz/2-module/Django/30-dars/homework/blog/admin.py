@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Articles, ContactUs
+from .models import Articles, ContactUs, Comments, Subscribers
 
 
 # Register your models here.
@@ -18,3 +18,5 @@ class ArticlesAdmin(admin.ModelAdmin):
 
 admin.site.register(Articles, ArticlesAdmin)
 admin.site.register(ContactUs, ContactAdmin)
+admin.site.register(Comments)
+admin.site.register(Subscribers)
