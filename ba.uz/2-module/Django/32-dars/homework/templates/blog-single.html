@@ -11,7 +11,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 text-center ftco-animate pt-5">
                 <h1 class="mb-3 bread">Our Blog</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index-2.html">Home <i
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i
                         class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="blog.html">Blog <i
                         class="fa fa-chevron-right"></i></a></span> <span>Blog Details<i
                         class="fa fa-chevron-right"></i></span></p>
@@ -49,19 +49,24 @@
                 <div class="row justify-content-center pt-4 py-md-5">
                     <div class="col-md-7">
                         <div class="py-4">
-                            {{article.description}}
+                            {{article.description | safe}}
                         </div>
 
                         <div class="tag-widget post-tag-container mb-5 mt-5">
                             <div class="tagcloud">
-                                <a href="#" class="tag-cloud-link">Life</a>
-                                <a href="#" class="tag-cloud-link">Sport</a>
-                                <a href="#" class="tag-cloud-link">Tech</a>
-                                <a href="#" class="tag-cloud-link">Work</a>
+                                <a href="/blog/?cat={{article.category.id}}" class="tag-cloud-link">{{article.category}}</a>
                             </div>
                         </div>
                         <div class="comment-post py-5">
-                            <h3 class="mb-5">6 Comments</h3>
+                            {% if comment != 0 and comment > 1 %}
+                            <h3 class="mb-5">{{comment}} Comments</h3>
+                            {% elif comment == 1 %}
+                            <h3 class="mb-5">{{comment}} Comment</h3>
+                            {% else %}
+                            <h3 class="mb-5">Be the first!</h3>
+                            {% endif %}
+
+
                             <ul class="comment-list">
                                 {% for comment in comments %}
                                 <li class="comment">
@@ -98,8 +103,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="website">Website</label>
-                                            <input type="url" name="website" class="form-control" id="website">
+                                            <label for="telegram">Telegram</label>
+                                            <input type="text" name="telegram" class="form-control" id="telegram">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
