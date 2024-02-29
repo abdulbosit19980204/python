@@ -73,3 +73,7 @@ def subscribes(request):
     # obj.save()
 
     return render(request, 'index.html')
+
+
+def error_view(request):
+    return render(request, '404.html')
