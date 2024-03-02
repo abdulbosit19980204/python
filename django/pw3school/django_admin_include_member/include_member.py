@@ -11,4 +11,14 @@ from django.contrib import admin
 
 # Insert a couple of lines here to make the Member model visible in the admin page:
 
-after Register
+# Register your models here.
+admin.site.register(Member)
+
+
+
+# Change Display
+# In the list in the screenshot, we see Member object(1) , Member object(2) etc. which might not be the data you
+# wanted to be displayed in the list
+# It would be better to display "firstname" and "lastname" instead.
+# This can easily be done changing some settings in the models.py and / or the admin.py files.
+# You will learn more about this in the next chapter
