@@ -21,7 +21,6 @@ class Articles(models.Model):
     view_count = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=True)
-
     creator = models.CharField(max_length=120)
     creator_title = models.CharField(max_length=120)
     creator_image = models.ImageField(upload_to='users/image/')
