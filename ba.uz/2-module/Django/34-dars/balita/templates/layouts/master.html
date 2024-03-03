@@ -57,7 +57,7 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="category.html" id="dropdown04" data-toggle="dropdown"
@@ -71,21 +71,21 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="category.html" id="dropdown05" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="/categories" id="dropdown05" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Categories</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown05">
-                            <a class="dropdown-item" href="category.html">Lifestyle</a>
-                            <a class="dropdown-item" href="category.html">Food</a>
-                            <a class="dropdown-item" href="category.html">Adventure</a>
-                            <a class="dropdown-item" href="category.html">Travel</a>
-                            <a class="dropdown-item" href="category.html">Business</a>
+                            <a class="dropdown-item" href="/categories">Lifestyle</a>
+                            <a class="dropdown-item" href="/categories">Food</a>
+                            <a class="dropdown-item" href="/categories">Adventure</a>
+                            <a class="dropdown-item" href="/categories">Travel</a>
+                            <a class="dropdown-item" href="/categories">Business</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="/contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -93,9 +93,28 @@
     </nav>
 </header>
 
-{% block content %}
-{% endblock %}
+<section class="site-section pt-5">
+    <div class="container">
+        {% block slider %}
+        {% endblock %}
+        {% block popular_content%}
+        {% endblock %}
+    </div>
+</section>
 
+<section class="site-section py-sm">
+    <div class="container">
+        {% block mainpage_categories_title %}
+        {% endblock %}
+        <div class="row blog-entries">
+            {% block content %}
+            {% endblock %}
+            {% block sidebar %}
+            {% endblock %}
+
+        </div>
+    </div>
+</section>
 <footer class="site-footer">
     <div class="container">
         <div class="row mb-5">

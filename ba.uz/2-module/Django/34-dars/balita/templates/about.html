@@ -2,8 +2,8 @@
 {% load static %}
 {% block title%}
 Contact
-{% block %}
-{% block context %}
+{% endblock %}
+{% block content %}
 <section class="site-section">
     <div class="container">
         <div class="row blog-entries">
@@ -11,7 +11,8 @@ Contact
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="mb-4">Hi There! I'm Meagan Smith</h2>
-                        <p class="mb-5"><img src="images/img_6.jpg" alt="Image placeholder" class="img-fluid"></p>
+                        <p class="mb-5"><img src="{% static 'images/img_6.jpg' %}" alt="Image placeholder"
+                                             class="img-fluid"></p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum minima eveniet recusandae
                             suscipit eum laboriosam fugit amet deleniti iste et. Ad dolores, necessitatibus non saepe
                             tenetur impedit commodi quibusdam natus repellat, exercitationem accusantium perferendis

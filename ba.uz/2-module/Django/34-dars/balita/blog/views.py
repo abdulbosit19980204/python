@@ -15,5 +15,9 @@ def categories_view(request):
     return render(request, 'category.html')
 
 
+def categories_article(request):
+    return render(request, 'blog-single.html')
+
+
 def contact_view(request):
     return render(request, 'contact.html')
