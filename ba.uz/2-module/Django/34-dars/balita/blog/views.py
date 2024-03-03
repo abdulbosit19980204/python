@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Article, Category
 
 
 # Create your views here.
@@ -12,7 +13,11 @@ def about_view(request):
 
 
 def categories_view(request):
-    return render(request, 'category.html')
+    articles = Article.objects.all()
+    d = {
+        "articles": articles
+    }
+    return render(request, 'category.html', context=d)
 
 
 def categories_article(request):
