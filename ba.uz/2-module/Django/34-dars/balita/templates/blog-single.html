@@ -5,7 +5,6 @@ Article
 {% endblock %}
 
 
-
 {% block content %}
 <div class="col-md-12 col-lg-8 main-content">
     <h1 class="mb-4">There’s a Cool New Way for Men to Wear Socks and Sandals</h1>
@@ -180,7 +179,7 @@ Article
     </div>
 </div>
 {% endblock %}
-
+{% block related_article %}
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -191,7 +190,7 @@ Article
         <div class="row">
             <div class="col-md-6 col-lg-4">
                 <a href="#" class="a-block d-flex align-items-center height-md"
-                   style="background-image: url('images/img_2.jpg'); ">
+                   style="background-image: url('{% static 'images/img_2.jpg' %}'); ">
                     <div class="text">
                         <div class="post-meta">
                             <span class="category">Lifestyle</span>
@@ -204,7 +203,7 @@ Article
             </div>
             <div class="col-md-6 col-lg-4">
                 <a href="#" class="a-block d-flex align-items-center height-md"
-                   style="background-image: url('images/img_3.jpg'); ">
+                   style="background-image: url('{% static 'images/img_3.jpg' %}'); ">
                     <div class="text">
                         <div class="post-meta">
                             <span class="category">Travel</span>
@@ -217,7 +216,7 @@ Article
             </div>
             <div class="col-md-6 col-lg-4">
                 <a href="#" class="a-block d-flex align-items-center height-md"
-                   style="background-image: url('images/img_4.jpg'); ">
+                   style="background-image: url('{% static 'images/img_4.jpg' %}'); ">
                     <div class="text">
                         <div class="post-meta">
                             <span class="category">Food</span>
@@ -231,3 +230,4 @@ Article
         </div>
     </div>
 </section>
+{% endblock %}
