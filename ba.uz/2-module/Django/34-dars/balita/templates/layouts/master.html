@@ -57,7 +57,7 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
+                        <a class="nav-link {{home}}" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="category.html" id="dropdown04" data-toggle="dropdown"
@@ -71,21 +71,20 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/categories" id="dropdown05" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle {{category}}" href="/categories" id="dropdown05"
+                           data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Categories</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown05">
-                            <a class="dropdown-item" href="/categories">Lifestyle</a>
-                            <a class="dropdown-item" href="/categories">Food</a>
-                            <a class="dropdown-item" href="/categories">Adventure</a>
-                            <a class="dropdown-item" href="/categories">Travel</a>
-                            <a class="dropdown-item" href="/categories">Business</a>
+                            {% for cat in categories %}
+                            <a class="dropdown-item " href="/categories/{{cat.id}}">{{cat}}</a>
+                            {% endfor %}
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
+                    <li class="nav-item {{about}}">
+                        <a class="nav-link {{about}}" href="/about">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact</a>
+                    <li class="nav-item {{contact}}">
+                        <a class="nav-link {{contact}}" href="/contact">Contact</a>
                     </li>
                 </ul>
             </div>
