@@ -8,9 +8,12 @@ categories = Category.objects.all()
 
 def home_view(request):
     categories = Category.objects.all()
+    slider_article = Article.objects.all().order_by('-view_count')[:3]
+
     d = {
         "home": "active",
-        "categories": categories
+        "categories": categories,
+        "slider_article": slider_article
     }
     return render(request, 'index.html', context=d)
 
