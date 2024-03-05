@@ -38,10 +38,14 @@ def categories_view(request, pk):
     return render(request, 'category.html', context=d)
 
 
-def categories_article(request):
+def article_info(request, pk):
+    detail = Article.objects.filter(id=pk).first()
+    detail.view_count += 1
+    detail.save(update_fields=['view_count'])
     d = {
         "category": "active",
         "categories": categories,
+        "detail": detail
     }
     return render(request, 'blog-single.html', context=d)
 
