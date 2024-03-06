@@ -21,95 +21,21 @@ Article
                 href="#">#asia</a></p>
     </div>
     <div class="pt-5">
-        <h3 class="mb-5">6 Comments</h3>
+        <h3 class="mb-5">{{len_comment}} Comments</h3>
         <ul class="comment-list">
+            {% for comment in comments %}
             <li class="comment">
                 <div class="vcard">
                     <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
                 </div>
                 <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <h3>{{comment.name}}</h3>
+                    <div class="meta">{{comment.created_at}}</div>
+                    <p>{{comment.comment}}</p>
                     <p><a href="#" class="reply">Reply</a></p>
                 </div>
             </li>
-            <li class="comment">
-                <div class="vcard">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                </div>
-                <ul class="children">
-                    <li class="comment">
-                        <div class="vcard">
-                            <img src="images/person_1.jpg" alt="Image placeholder">
-                        </div>
-                        <div class="comment-body">
-                            <h3>Jean Doe</h3>
-                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                nihil?</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                        </div>
-                        <ul class="children">
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                        quidem laborum necessitatibus, ipsam impedit vitae autem, eum
-                                        officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                        impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard">
-                                            <img src="images/person_1.jpg" alt="Image placeholder">
-                                        </div>
-                                        <div class="comment-body">
-                                            <h3>Jean Doe</h3>
-                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-                                                autem, eum officia, fugiat saepe enim sapiente iste iure!
-                                                Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                            <p><a href="#" class="reply">Reply</a></p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="comment">
-                <div class="vcard">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                </div>
-                <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                </div>
-            </li>
+            {% endfor %}
         </ul>
 
         <div class="comment-form-wrap pt-5">
@@ -118,19 +44,19 @@ Article
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
+                    <input name="name" type="text" class="form-control" id="name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
+                    <input name="email" type="email" class="form-control" id="email">
                 </div>
                 <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
+                    <label for="telegram">Telegram</label>
+                    <input name="telegram" type="text" class="form-control" id="telegram">
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea name id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="comment" id="message" cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn btn-primary">

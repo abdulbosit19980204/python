@@ -33,11 +33,12 @@ class Comments(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField()
-    Telegram = models.CharField(max_length=255, blank=True, null=True)
+    telegram = models.CharField(max_length=255, blank=True, null=True)
     comment = RichTextField()
+    is_visiable = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return self.name

@@ -29,8 +29,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Comments)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("id", 'article', "created_at")
-    list_display_links = ("id", 'article', "created_at")
+    list_display = ("id", 'name', 'article', "created_at", "is_visiable")
+    list_display_links = ("id", 'name', 'article')
 
 # admin.site.register(Category, CategoryAdmin)
 # admin.site.register(Article, ArticleAdmin)
