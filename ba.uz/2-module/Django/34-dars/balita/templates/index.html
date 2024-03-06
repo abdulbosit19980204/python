@@ -11,7 +11,7 @@ Home page
         <div class="owl-carousel owl-theme home-slider">
             {% for article in slider_article %}
             <div>
-                <a href="blog-single.html" class="a-block d-flex align-items-center height-lg"
+                <a href="/category/{{article.id}}" class="a-block d-flex align-items-center height-lg"
                    style="background-image: url({{article.image.url}}); ">
                     <div class="text half-to-full">
                         <div class="post-meta">
@@ -35,7 +35,7 @@ Home page
 <div class="row">
     {% for article in slider_article %}
     <div class="col-md-6 col-lg-4">
-        <a href="blog-single.html" class="a-block d-flex align-items-center height-md"
+        <a href="/category/{{article.id}}" class="a-block d-flex align-items-center height-md"
            style="background-image: url({{article.image.url}}); ">
             <div class="text">
                 <div class="post-meta">
@@ -43,7 +43,7 @@ Home page
                     <span class="mr-2">{{article.created_at}} </span> &bullet;
                     <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
                 </div>
-                <h3>There’s a Cool New Way for Men to Wear Socks and Sandals</h3>
+                <h3>{{article.title}}</h3>
             </div>
         </a>
     </div>

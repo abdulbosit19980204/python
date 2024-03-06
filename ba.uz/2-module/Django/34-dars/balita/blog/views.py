@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article, Category
 
 categories = Category.objects.all()
@@ -42,6 +42,13 @@ def categories_view(request, pk):
 
 
 def article_info(request, pk):
+    if request.method == "POST":
+        comment = request.POST
+        obj = Comments.objects.create(name=comment['name'], email=comment['email'], telegram=comment['telegram'],
+                                      comment=comment['comment'], article_id=pk)
+        obj.save()
+        return redirect()
+
     detail = Article.objects.filter(id=pk).first()
     detail.view_count += 1
     detail.save(update_fields=['view_count'])
