@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Article, Category, Comments
+from .models import Article, Category, Comments, Tag
 
 categories = Category.objects.all()
 
@@ -10,38 +10,66 @@ def home_view(request):
     categories = Category.objects.all()
     articles = Article.objects.all().order_by('category')
     popular = Article.objects.all().order_by('-view_count')
+    tags = Tag.objects.all()
     d = {
         "home": "active",
         "categories": categories,
         "slider_article": articles[1:4],
         "articles": articles,
-        "popular": popular[:3]
+        "popular": popular[:3],
+        "tags": tags
     }
     return render(request, 'index.html', context=d)
 
 
 def about_view(request):
     categories = Category.objects.all()
+    tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
     d = {
         "about": "active",
         "categories": categories,
-        "popular": popular[:3]
+        "popular": popular[:3],
+        "tags": tags
     }
     return render(request, 'about.html', context=d)
+
+
+def tag_view(request):
+    data = request.GET
+    tag = data.get('tag', None)
+    categories = Category.objects.all()
+    tags = Tag.objects.all()
+    popular = Article.objects.all().order_by('-view_count')
+    cat_name = Tag.objects.filter(id=int(tag))
+
+    if tag != None:
+        articles = Article.objects.filter(tags=int(tag))
+        d = {
+            "articles": articles,
+            "category": "active",
+            "categories": categories,
+            "cat_name": cat_name[0],
+            "popular": popular[:3],
+            "tags": tags
+        }
+        return render(request, 'category.html', context=d)
 
 
 def categories_view(request, pk):
     articles = Article.objects.filter(category=pk)
     categories = Category.objects.all()
     cat_name = Category.objects.filter(id=pk)
+    tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
+
     d = {
         "articles": articles,
         "category": "active",
         "categories": categories,
         "cat_name": cat_name[0],
-        "popular": popular[:3]
+        "popular": popular[:3],
+        "tags": tags
     }
     return render(request, 'category.html', context=d)
 
@@ -59,22 +87,28 @@ def article_info(request, pk):
     comments = Comments.objects.filter(article_id=pk, is_visiable=True)
     detail.save(update_fields=['view_count'])
     popular = Article.objects.all().order_by('-view_count')
+    tags = Tag.objects.all()
+    reletad_tag = [i for i in detail.tags.all()]
+    print(reletad_tag)
     d = {
         "category": "active",
         "categories": categories,
         "comments": comments,
         "detail": detail,
         "len_comment": len(comments),
-        "popular": popular[:3]
+        "popular": popular[:3],
+        "tags": tags
     }
     return render(request, 'blog-single.html', context=d)
 
 
 def contact_view(request):
     popular = Article.objects.all().order_by('-view_count')
+    tags = Tag.objects.all()
     d = {
         "contact": "active",
         "categories": categories,
-        "popular": popular[:3]
+        "popular": popular[:3],
+        "tags": tags
     }
     return render(request, 'contact.html', context=d)

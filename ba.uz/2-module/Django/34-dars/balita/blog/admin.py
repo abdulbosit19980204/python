@@ -1,16 +1,21 @@
 from django.contrib import admin
-from .models import Article, Category, Comments
+from .models import Article, Category, Comments, Tag
 
 
 # Register your models here.
 class CategoryInline(admin.TabularInline):
     model = Article
-    extra = 3
+    extra = 0
 
 
 class ArticleInline(admin.TabularInline):
     model = Comments
-    extra = 1
+    extra = 0
+
+
+class TagInline(admin.TabularInline):
+    model = Article
+    extra = 0
 
 
 @admin.register(Category)
@@ -32,6 +37,11 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ("id", 'name', 'article', "created_at", "is_visiable")
     list_display_links = ("id", 'name', 'article')
 
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "created_at")
+    list_display_links = ("id", "name")
 # admin.site.register(Category, CategoryAdmin)
 # admin.site.register(Article, ArticleAdmin)
 # admin.site.register(Comments)

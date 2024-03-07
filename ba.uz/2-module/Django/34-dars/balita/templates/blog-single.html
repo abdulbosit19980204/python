@@ -17,8 +17,13 @@ Article
         <p>{{detail.description | safe}}</p>
     </div>
     <div class="pt-5">
-        <p>Categories: <a href="#">Food</a>, <a href="#">Travel</a> Tags: <a href="#">#manila</a>, <a
-                href="#">#asia</a></p>
+        <p>
+            Categories:<a href="#">{{detail.category}}</a>
+            Tags:
+            {% for tag in detail.tags.all %}
+            <a href="/categories/?tag={{tag}}">#{{ tag }}</a>
+            {% endfor %}
+        </p>
     </div>
     <div class="pt-5">
         <h3 class="mb-5">{{len_comment}} Comments</h3>
