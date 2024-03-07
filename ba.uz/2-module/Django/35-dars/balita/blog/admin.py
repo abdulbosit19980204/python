@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category, Comments, Tag
+from .models import Article, Category, Comments, Tag, Contact
 
 
 # Register your models here.
@@ -42,6 +42,9 @@ class CommentAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "created_at")
     list_display_links = ("id", "name")
-# admin.site.register(Category, CategoryAdmin)
-# admin.site.register(Article, ArticleAdmin)
-# admin.site.register(Comments)
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'email', 'is_responded', 'created_at')
+    list_display_links = ('id', 'name', 'email')

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Article, Category, Comments, Tag
+from .models import Article, Category, Comments, Tag, Contact
 from django.core.paginator import Paginator
 
 categories = Category.objects.all()
@@ -12,15 +12,20 @@ def home_view(request):
     page = data.get('page', 1)
 
     categories = Category.objects.all()
-    articles = Article.objects.all().order_by('category')
+    articles = Article.objects.all().order_by('category', '-created_at')
     page_obj = Paginator(articles, 4)
     popular = Article.objects.all().order_by('-view_count')
+    vc = popular[(len(popular) // 2)].view_count
+    more_blog_posts = Article.objects.filter(view_count__lte=vc).order_by('-created_at')
+    popular_article = Article.objects.all().order_by('-created_at')
     tags = Tag.objects.all()
     d = {
         "home": "active",
         "categories": categories,
-        "slider_article": articles[1:4],
+        "slider_article": articles[3:(len(articles) - 3)],
+        "popular_article": popular_article[:3],
         "articles": page_obj.get_page(page),
+        "more_blog_posts": more_blog_posts[:3],
         "popular": popular[:3],
         "tags": tags
     }
@@ -28,6 +33,10 @@ def home_view(request):
 
 
 def about_view(request):
+    data = request.GET
+    latest = Article.objects.all().order_by('-created_at')
+    page = data.get('page', 1)
+    page_article = Paginator(latest, 3)
     categories = Category.objects.all()
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
@@ -35,7 +44,8 @@ def about_view(request):
         "about": "active",
         "categories": categories,
         "popular": popular[:3],
-        "tags": tags
+        "tags": tags,
+        "latest": page_article.get_page(page),
     }
     return render(request, 'about.html', context=d)
 
@@ -111,6 +121,12 @@ def article_info(request, pk):
 
 
 def contact_view(request):
+    if request.method == "POST":
+        data = request.POST
+        contact_data = Contact.objects.create(name=data['name'], phone=data['phone'], email=data['email'],
+                                              message=data['message'])
+        contact_data.save()
+        return redirect('/contact')
     popular = Article.objects.all().order_by('-view_count')
     tags = Tag.objects.all()
     d = {
