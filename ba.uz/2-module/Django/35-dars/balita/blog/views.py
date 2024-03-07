@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Article, Category, Comments, Tag, Contact
 from django.core.paginator import Paginator
+from .search import search
 
 categories = Category.objects.all()
 
@@ -136,3 +137,23 @@ def contact_view(request):
         "tags": tags
     }
     return render(request, 'contact.html', context=d)
+
+
+def search_view(request):
+    data = request.POST
+    articles = search(data['key_word'])
+
+    page = data.get('page', 1)
+    page_obj = Paginator(articles, 6)
+    categories = Category.objects.all()
+    tags = Tag.objects.all()
+    popular = Article.objects.all().order_by('-view_count')
+
+    d = {
+        "articles": page_obj.get_page(page),
+        "category": "active",
+        "categories": categories,
+        "popular": popular[:3],
+        "tags": tags
+    }
+    return render(request, 'category.html', context=d)
