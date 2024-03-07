@@ -21,7 +21,7 @@ Article
             Categories:<a href="#">{{detail.category}}</a>
             Tags:
             {% for tag in detail.tags.all %}
-            <a href="/categories/?tag={{tag}}">#{{ tag }}</a>
+            <a href="/categories/?tag={{tag.id}}">#{{ tag }}</a>
             {% endfor %}
         </p>
     </div>

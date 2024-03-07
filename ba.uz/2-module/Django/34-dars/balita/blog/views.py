@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article, Category, Comments, Tag
+from django.core.paginator import Paginator
 
 categories = Category.objects.all()
 
@@ -7,15 +8,19 @@ categories = Category.objects.all()
 # Create your views here.
 
 def home_view(request):
+    data = request.GET
+    page = data.get('page', 1)
+
     categories = Category.objects.all()
     articles = Article.objects.all().order_by('category')
+    page_obj = Paginator(articles, 4)
     popular = Article.objects.all().order_by('-view_count')
     tags = Tag.objects.all()
     d = {
         "home": "active",
         "categories": categories,
         "slider_article": articles[1:4],
-        "articles": articles,
+        "articles": page_obj.get_page(page),
         "popular": popular[:3],
         "tags": tags
     }
