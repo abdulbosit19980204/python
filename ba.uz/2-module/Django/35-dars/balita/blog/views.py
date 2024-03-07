@@ -62,14 +62,17 @@ def tag_view(request):
 
 
 def categories_view(request, pk):
+    data = request.GET
     articles = Article.objects.filter(category=pk)
+    page = data.get('page', 1)
+    page_obj = Paginator(articles, 6)
     categories = Category.objects.all()
     cat_name = Category.objects.filter(id=pk)
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
 
     d = {
-        "articles": articles,
+        "articles": page_obj.get_page(page),
         "category": "active",
         "categories": categories,
         "cat_name": cat_name[0],
