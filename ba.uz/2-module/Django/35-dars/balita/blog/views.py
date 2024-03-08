@@ -140,20 +140,27 @@ def contact_view(request):
 
 
 def search_view(request):
-    data = request.POST
-    articles = search(data['key_word'])
+    if request.method == "POST":
+        data = request.POST
+        query = data['key_word']
+        return redirect(f'/search?q={query}')
+    query = request.GET.get('q')
+    if query is not None and len(query) >= 1:
+        articles = Article.objects.filter(is_published=True, title__icontains=query, description__icontains=query)
+    else:
+        articles = Article.objects.filter(is_published=True)
 
-    page = data.get('page', 1)
+    page = request.GET.get('page', 1)
     page_obj = Paginator(articles, 6)
-    categories = Category.objects.all()
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
 
     d = {
         "articles": page_obj.get_page(page),
         "category": "active",
-        "categories": categories,
+        "categories": Category.objects.all(),
         "popular": popular[:3],
+        "cat_name": query,
         "tags": tags
     }
     return render(request, 'category.html', context=d)

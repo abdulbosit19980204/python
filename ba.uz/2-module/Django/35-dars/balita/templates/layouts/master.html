@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-3 search-top">
 
-                    <form action="search/" class="search-top-form" method="POST">
+                    <form action="/search/" class="search-top-form" method="POST">
                         {% csrf_token %}
                         <span class="icon fa fa-search"></span>
                         <input name="key_word" type="text" id="search" placeholder="Type keyword to search...">
@@ -111,10 +111,12 @@
             {% endblock %}
             <div class="col-md-12 col-lg-4 sidebar">
                 <div class="sidebar-box search-form-wrap">
-                    <form action="#" class="search-form">
+                    <form action="/search/" class="search-form" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <span class="icon fa fa-search"></span>
-                            <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                            <input name="key_word" type="text" class="form-control" id="s"
+                                   placeholder="Type a keyword and hit enter">
                         </div>
                     </form>
                 </div>
