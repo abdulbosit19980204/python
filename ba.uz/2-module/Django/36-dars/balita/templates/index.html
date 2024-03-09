@@ -84,7 +84,7 @@ Home page
                     <li class="page-item"><a class="page-link" href="?page={{articles.previous_page_number}}">Prev</a>
                     </li>
                     {% else %}
-                    <li class="page-item"><a class="page-link" href="">Prev</a></li>
+                    <li class="page-item"><a class="page-link">Prev</a></li>
                     {% endif %}
                     {% for i in articles.paginator.page_range %}
                     {% if articles.number == i %}
@@ -96,7 +96,7 @@ Home page
                     {% if articles.has_next %}
                     <li class="page-item"><a class="page-link" href="?page={{articles.next_page_number}}">Next</a></li>
                     {% else %}
-                    <li class="page-item"><a class="page-link" href="">Next</a></li>
+                    <li class="page-item"><a class="page-link">Next</a></li>
                     {% endif %}
                 </ul>
             </nav>
