@@ -24,9 +24,25 @@ class Member(models.Model):
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
 
+
 # Defining our own __str__() function is not a Django feature, it is how to change the string
 # representation of objects in Python
 
 # Set list_display
 # We can control the fields to display by specifying them in a list_display property in the admin.py file.
+# First Create a MemberAdmin() class and specify the list_display tuple like, this:
 
+# admin.py file
+from django.cotrib import admin
+from .models import Member
+
+
+# Register your model here.
+
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ("firstname", "lastname", "joined_date")
+
+
+admin.site.register(Member, MemberAdmin)
+
+"Remember to add the MemberAdmin as an argument in the admin.site.register(Member, MemberAdmin)"
