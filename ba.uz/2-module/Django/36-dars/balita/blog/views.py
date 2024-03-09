@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Article, Category, Comments, Tag, Contact
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .search import search
 
 categories = Category.objects.all()
@@ -154,7 +155,7 @@ def search_view(request):
         return redirect(f'/search?q={query}')
     query = request.GET.get('q')
     if query is not None and len(query) >= 1:
-        articles = Article.objects.filter(is_published=True, title__icontains=query, description__icontains=query)
+        articles = Article.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
     else:
         articles = Article.objects.filter(is_published=True)
 
