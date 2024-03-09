@@ -57,7 +57,11 @@ About
             <nav aria-label="Page navigation" class="text-center">
                 <ul class="pagination">
                     {% if latest.has_previous %}
-                    <li class="page-item "><a class="page-link" href="?page=latest.previous_page">Prev</a></li>
+                    <li class="page-item "><a class="page-link" href="?page={{latest.previous_page_number}}">Prev</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item "><a class="page-link" href="">Prev</a>
+                    </li>
                     {% endif %}
                     {% for i in latest.paginator.page_range %}
                     {% if latest.number == i %}
@@ -66,7 +70,11 @@ About
                     <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
                     {% endif %}
                     {% endfor %}
-                    <li class="page-item"><a class="page-link" href="?page=latest.next_page">Next</a></li>
+                    {% if latest.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{latest.next_page_number}}">Next</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="">Next</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
