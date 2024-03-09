@@ -29,7 +29,7 @@ def home_view(request):
         "more_blog_posts": more_blog_posts[:3],
         "popular": popular[:3],
         "tags": tags,
-        "latests": popular_article[:3]
+        "latests_footer": popular_article[:3]
     }
     return render(request, 'index.html', context=d)
 
@@ -48,6 +48,7 @@ def about_view(request):
         "popular": popular[:3],
         "tags": tags,
         "latest": page_article.get_page(page),
+        "latests_footer": latest[:3]
     }
     return render(request, 'about.html', context=d)
 
@@ -59,7 +60,7 @@ def tag_view(request):
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
     cat_name = Tag.objects.filter(id=int(tag))
-
+    latest = Article.objects.all().order_by('-created_at')
     if tag != None:
         articles = Article.objects.filter(tags=int(tag))
         d = {
@@ -68,7 +69,8 @@ def tag_view(request):
             "categories": categories,
             "cat_name": cat_name[0],
             "popular": popular[:3],
-            "tags": tags
+            "tags": tags,
+            "latests_footer": latest[:3]
         }
         return render(request, 'category.html', context=d)
 
@@ -82,14 +84,15 @@ def categories_view(request, pk):
     cat_name = Category.objects.filter(id=pk)
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
-
+    latest = Article.objects.all().order_by('-created_at')
     d = {
         "articles": page_obj.get_page(page),
         "category": "active",
         "categories": categories,
         "cat_name": cat_name[0],
         "popular": popular[:3],
-        "tags": tags
+        "tags": tags,
+        "latests_footer": latest[:3]
     }
     return render(request, 'category.html', context=d)
 
@@ -109,7 +112,8 @@ def article_info(request, pk):
     popular = Article.objects.all().order_by('-view_count')
     tags = Tag.objects.all()
     reletad_tag = [i for i in detail.tags.all()]
-    print(reletad_tag)
+    latest = Article.objects.all().order_by('-created_at')
+
     d = {
         "category": "active",
         "categories": categories,
@@ -117,7 +121,8 @@ def article_info(request, pk):
         "detail": detail,
         "len_comment": len(comments),
         "popular": popular[:3],
-        "tags": tags
+        "tags": tags,
+        "latests_footer": latest[:3]
     }
     return render(request, 'blog-single.html', context=d)
 
@@ -130,12 +135,14 @@ def contact_view(request):
         contact_data.save()
         return redirect('/contact')
     popular = Article.objects.all().order_by('-view_count')
+    latest = Article.objects.all().order_by('-created_at')
     tags = Tag.objects.all()
     d = {
         "contact": "active",
         "categories": categories,
         "popular": popular[:3],
-        "tags": tags
+        "tags": tags,
+        "latests_footer": latest[:3]
     }
     return render(request, 'contact.html', context=d)
 
@@ -155,6 +162,7 @@ def search_view(request):
     page_obj = Paginator(articles, 6)
     tags = Tag.objects.all()
     popular = Article.objects.all().order_by('-view_count')
+    latest = Article.objects.all().order_by('-created_at')
 
     d = {
         "articles": page_obj.get_page(page),
@@ -162,6 +170,7 @@ def search_view(request):
         "categories": Category.objects.all(),
         "popular": popular[:3],
         "cat_name": query,
-        "tags": tags
+        "tags": tags,
+        "latests_footer": latest
     }
     return render(request, 'category.html', context=d)

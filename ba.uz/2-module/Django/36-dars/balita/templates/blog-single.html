@@ -11,7 +11,7 @@ Article
     <div class="post-meta">
         <span class="category">{{detail.category}}</span>
         <span class="mr-2">{{detail.created_at}} </span> &bullet;
-        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+        <span class="ml-2"><span class="fa fa-comments"></span> {{detail.comments_set.count}}</span>
     </div>
     <div class="post-content-body">
         <p>{{detail.description | safe}}</p>

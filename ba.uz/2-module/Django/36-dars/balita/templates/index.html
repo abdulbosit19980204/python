@@ -21,8 +21,7 @@ Home page
                                     class="fa fa-comments"></span> {{article.comments_set.count}}</span>
                         </div>
                         <h3>{{article.title}}</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta
-                            eaque ipsa laudantium!</p>
+                        <p>{{article.sub_title|slice:":100"}}...</p>
                     </div>
                 </a>
             </div>
@@ -113,7 +112,7 @@ Home page
 <div class="post-meta">
 <span class="category">{{post.category}}</span>
 <span class="mr-2">{{post.created_at}} </span> &bullet;
-<span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+<span class="ml-2"><span class="fa fa-comments"></span> {{post.comments_set.count}}</span>
 </div>
 <h2>{{post.title}}</h2>
 </span>
