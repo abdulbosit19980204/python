@@ -83,3 +83,70 @@
   <h1>Goodbye</h1>
 {% endif %} 
 """
+
+# not in
+
+# To check if a certain item is not present in an object.
+
+"""
+{% if 'Banana' not in fruits %}
+    <h1>Hello</h1>
+{% else %}
+    <h1>Goodbye</h1>
+{% endif %}
+"""
+
+# is
+
+# Check if two objects are the same
+# This operator "is" different from the "==" operator, because the == operator check the values of two objects,
+# but the "is" checks the identity of two objects.
+# In the view, we have two objects, x and y, with the same values:
+
+# views.py
+
+from django.http import HttpResponse
+from django.template import loader
+
+
+def testing(request):
+    template = loader.get_template('template.html')
+    context = {
+        'x': ['Apple', 'Banana', 'Cherry'],
+        'y': ['Apple', 'Banana', 'Cherry']
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+# The two objects have the same value, but is it the same object?
+"""
+{% if x is y %}
+    <h1>Yes</h1>
+{% else %}
+    <h1>No</h1>
+{% endif %}
+"""
+
+# Let us try the same example with the == operator instead:
+"""
+{% if x==y %}
+    <h1>Yes</h1>
+{% else %}
+    <h1>No</h1>
+{% endif %}
+"""
+
+
+# How can two objects be the same? Well, if you have two objects that points to the same object, then the is operator
+# evaluates to true:
+# We will demonstrate this by using the "{% with %}" tag, which allows us to create variables in the template.
+"""
+{% with var1=x var2=x %}
+    {% if var1 is var2 %}
+    <h1>Yes</h1>
+    {% else %}
+    <h1>No</h1>
+    {%endif%}
+{%endwith%}
+"""
