@@ -137,7 +137,6 @@ def testing(request):
 {% endif %}
 """
 
-
 # How can two objects be the same? Well, if you have two objects that points to the same object, then the is operator
 # evaluates to true:
 # We will demonstrate this by using the "{% with %}" tag, which allows us to create variables in the template.
@@ -150,3 +149,14 @@ def testing(request):
     {%endif%}
 {%endwith%}
 """
+
+# is Not
+# To check if two objects are not the same.
+"""
+{% if x is not y %}
+  <h1>YES</h1>
+{% else %}
+  <h1>NO</h1>
+{% endif %} 
+"""
+
