@@ -30,4 +30,5 @@
 # <h1>Welcome{#Everyone#}</h1>
 
 # Comment in Views
+
 # Views are written in Python, and Python comments are written with the # character
