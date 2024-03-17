@@ -6,8 +6,10 @@ from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 
 def home_view(request):
     posts = Post.objects.all()
+    users = MyUser.objects.all()
     d = {
         "posts": posts,
+        'users': users[:5]
     }
     return render(request, 'index.html', context=d)
 
