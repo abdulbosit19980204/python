@@ -1,10 +1,15 @@
 from django.shortcuts import render
+from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 
 
 # Create your views here.
 
 def home_view(request):
-    return render(request, 'index.html')
+    posts = Post.objects.all()
+    d = {
+        "posts": posts,
+    }
+    return render(request, 'index.html', context=d)
 
 
 def setting_view(request):
@@ -13,7 +18,6 @@ def setting_view(request):
 
 def profile_view(request):
     return render(request, 'profile.html')
-
 
 
 def sign_in_view(request):
