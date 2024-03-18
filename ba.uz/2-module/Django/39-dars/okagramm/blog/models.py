@@ -1,15 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
 class MyUser(models.Model):
-    username = models.CharField(max_length=100)
-    user_image = models.ImageField('media/user/', blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_image = models.ImageField('user/', default='default/user.avif')
 
-    first_name = models.CharField(max_length=120, blank=True, null=True)
-    last_name = models.CharField(max_length=120, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    # first_name = models.CharField(max_length=120, blank=True, null=True)
+    # last_name = models.CharField(max_length=120, blank=True, null=True)
+    # email = models.EmailField(blank=True, null=True)
     about_me = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     working_at = models.CharField(max_length=255, blank=True, null=True)
@@ -24,10 +25,13 @@ class MyUser(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.user.username
+
 
 class Post(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    post_image = models.ImageField('media/post/', blank=True, null=True)
+    post_image = models.ImageField('post/', blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

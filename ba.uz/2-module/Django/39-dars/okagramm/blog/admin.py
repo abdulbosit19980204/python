@@ -6,8 +6,8 @@ from .models import MyUser, FollowMyUser, Post, CommentPost, LikePost
 
 @admin.register(MyUser)
 class MyUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'created_at')
-    list_display_links = ('id', 'username')
+    list_display = ('id', 'user', 'created_at')
+    list_display_links = ('id', 'user')
 
 
 # admin.site.register(MyUser)
