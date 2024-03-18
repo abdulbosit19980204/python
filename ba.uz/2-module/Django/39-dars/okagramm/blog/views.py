@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 
 
 # Create your views here.
-
+@login_required(login_url='auth/signin')
 def home_view(request):
     posts = Post.objects.all()
     users = MyUser.objects.all()
@@ -20,11 +22,3 @@ def setting_view(request):
 
 def profile_view(request):
     return render(request, 'profile.html')
-
-
-def sign_in_view(request):
-    return render(request, 'signin.html')
-
-
-def sign_up_view(request):
-    return render(request, 'signup.html')
