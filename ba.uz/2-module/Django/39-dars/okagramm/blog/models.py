@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_image = models.ImageField('user/', default='default/user.avif')
-
+    follower_count = models.PositiveIntegerField(default=0)
     # first_name = models.CharField(max_length=120, blank=True, null=True)
     # last_name = models.CharField(max_length=120, blank=True, null=True)
     # email = models.EmailField(blank=True, null=True)
@@ -35,6 +35,9 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.author.user.username
 
 
 class CommentPost(models.Model):

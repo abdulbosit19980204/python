@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 
 
@@ -8,10 +8,12 @@ from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 @login_required(login_url='auth/signin')
 def home_view(request):
     posts = Post.objects.all()
-    users = MyUser.objects.all()
+    user = MyUser.objects.filter(user=request.user).first()
+    users = MyUser.objects.exclude(user=request.user)
     d = {
         "posts": posts,
-        'users': users[:5]
+        'users': users[:5],
+        "user": user,
     }
     return render(request, 'index.html', context=d)
 
