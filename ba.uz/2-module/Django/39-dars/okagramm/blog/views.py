@@ -7,13 +7,15 @@ from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
 # Create your views here.
 @login_required(login_url='auth/signin')
 def home_view(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all()[::-1]
+    comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
     users = MyUser.objects.exclude(user=request.user)
     d = {
         "posts": posts,
         'users': users[:5],
         "user": user,
+        "comments": comments
     }
     return render(request, 'index.html', context=d)
 

@@ -115,29 +115,22 @@
         </div>
 
         <div class="border-t pt-4 space-y-4 ">
+            {% for comment in comments %}
+            {% if comment.post_id == post.id %}
             <div class="flex">
                 <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                    <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt=""
+                    <img src="{{comment.author.user_image.url}}" alt=""
                          class="absolute h-full rounded-full w-full">
                 </div>
                 <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                    <p class="leading-6">Y'all like billie eillish?
-                        <urna class="i uil-heart"></urna>
-                        <i class="uil-grin-tongue-wink"> </i></p>
+                    <p class="leading-6">{{comment.message}}
+                        <!--                        <urna class="i uil-heart"></urna>-->
+                        <!--                        <i class="uil-grin-tongue-wink"> </i></p>-->
                     <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
                 </div>
             </div>
-            <div class="flex">
-                <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                    <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt=""
-                         class="absolute h-full rounded-full w-full">
-                </div>
-                <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                    <p class="leading-6">She's my favourite <i class="uil-grin-tongue-wink-alt"></i>
-                    </p>
-                    <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
-                </div>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
         <form action="/post/comment/" method="post">
             {% csrf_token %}
