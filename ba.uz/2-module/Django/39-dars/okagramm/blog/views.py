@@ -11,11 +11,13 @@ def home_view(request):
     comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
     users = MyUser.objects.exclude(user=request.user)
+    likes = LikePost.objects.all()
     d = {
         "posts": posts,
         'users': users[:5],
         "user": user,
-        "comments": comments
+        "comments": comments,
+        "likes": likes,
     }
     return render(request, 'index.html', context=d)
 
@@ -47,3 +49,19 @@ def post_comment_view(requsts):
         obj.save()
         return redirect('/#{}'.format(post_id))
     return render(requsts, 'index.html')
+
+
+def post_like_view(request):
+    if request.method == "POST":
+        data = request.POST
+        print(data)
+        post_id = data['post_id']
+        author = MyUser.objects.filter(user=request.user).first()
+        is_liked = LikePost.objects.filter(author=author, post_id=post_id)
+        if not is_liked:
+            liked = LikePost.objects.create(author=author, post_id=post_id)
+            liked.save()
+        else:
+            disliked = is_liked.delete()
+        return redirect('/#{}'.format(post_id))
+    return render(request, 'index.html')
