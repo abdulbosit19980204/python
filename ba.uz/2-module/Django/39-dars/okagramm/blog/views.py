@@ -33,3 +33,15 @@ def post_upload_view(request):
         post.save()
         return redirect('/')
     return redirect('/')
+
+
+def post_comment_view(requsts):
+    if requsts.method == "POST":
+        data = requsts.POST
+        message = data["message"]
+        post_id = data["post_id"]
+        author = MyUser.objects.filter(user=requsts.user).first()
+        obj = CommentPost.objects.create(message=message, post_id=post_id, author=author)
+        obj.save()
+        return redirect('/#{}'.format(post_id))
+    return render(requsts, 'index.html')
