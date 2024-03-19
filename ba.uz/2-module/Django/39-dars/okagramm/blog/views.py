@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
@@ -24,3 +24,12 @@ def setting_view(request):
 
 def profile_view(request):
     return render(request, 'profile.html')
+
+
+def post_upload_view(request):
+    if request.method == "POST":
+        my_user = MyUser.objects.filter(user=request.user).first()
+        post = Post.objects.create(post_image=request.FILES['post_image'], author=my_user)
+        post.save()
+        return redirect('/')
+    return redirect('/')

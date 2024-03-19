@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_image = models.ImageField('user/', default='default/user.avif')
+    user_image = models.ImageField(upload_to='user/', default='default/user.avif')
     follower_count = models.PositiveIntegerField(default=0)
     # first_name = models.CharField(max_length=120, blank=True, null=True)
     # last_name = models.CharField(max_length=120, blank=True, null=True)
@@ -31,7 +31,7 @@ class MyUser(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    post_image = models.ImageField('post/', blank=True, null=True)
+    post_image = models.ImageField(upload_to='post/', blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
