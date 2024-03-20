@@ -30,8 +30,9 @@ def profile_view(request):
     posts = Post.objects.filter(author=user)
     follower_count = FollowMyUser.objects.filter(following=user).count()
     following_count = FollowMyUser.objects.filter(follower=user).count()
-
-    if user_id == current_user.user.id:
+    print("curent:", current_user)
+    print("user:", user)
+    if user.id == current_user.id:
         actual_user = True
     else:
         actual_user = False

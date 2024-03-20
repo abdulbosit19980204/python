@@ -27,40 +27,47 @@
 <section>
     <div class="feature-photo">
         <figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
-        <form>
-            <div class="add-btn">
-                <span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a
-                        href="/">HOME</a></u></b></span>
-                <span style="color: white; font-size: 27px;"><b>{{post_count}} Post</b></span>
-                <span style="color: white; font-size: 27px;"><b>{{follower_count}} followers</b></span>
-                <span style="color: white; font-size: 27px;"><b>{{following_count}} following</b></span>
-                <a href="/user/follow/?user_id={{user.id}}" title="" data-ripple="">
-                    <button style="background-color: #ffc0cb; border: #ffc0cb;">Follow</button>
-                </a>
 
-            </div>
-        </form>
+        <div class="add-btn">
+            <span style="color: white; font-size: 27px; "><b><a href="/">
+                  <i class="fa fa-home" style="color: #48dbfb;" aria-hidden="true"></i>
+            </a></b></span>
+            <span style="color: white; font-size: 27px;"><b>{{post_count}} Post</b></span>
+            <span style="color: white; font-size: 27px;"><b>{{follower_count}} followers</b></span>
+            <span style="color: white; font-size: 27px;"><b>{{following_count}} following</b></span>
+            <a href="/user/follow/?user_id={{user.id}}"> Follow</a>
 
-        <!-- <form class="edit-phto">
+        </div>
+
+        {% if actual_user %}
+        <form class="edit-phto">
             <i class="fa fa-camera-retro"></i>
             <label class="fileContainer">
                 Upload Cover Photo
-            <input type="file"/>
+                <input type="file"/>
             </label>
-        </form> -->
+            <button type="submit"><i class="fa fa-upload"
+                                     style="border: 1px solid black; padding:4px; border-radius:5px">
+                Upload </i></button>
+        </form>
+        {% endif %}
         <div class="container-fluid">
             <div class="row merged">
                 <div class="col-lg-2 col-sm-3">
                     <div class="user-avatar">
                         <figure>
                             <img src="{{user.user_image.url}}"
-                                 style="height: 250px; width: 100%;" alt="">
+                                 style="height: 250px; width: 100%; " alt="">
                             {% if actual_user %}
                             <form class="edit-phto">
                                 <i class="fa fa-camera-retro"></i>
                                 <label class="fileContainer">
-                                    <a href="#account-settings">Upload Profile Photo</a>
+                                    Upload Profile Photo
+                                    <input type="file"/>
                                 </label>
+                                <button type="submit"><i class="fa fa-upload"
+                                                         style="border: 1px solid black; padding:4px; border-radius:5px">
+                                    Save </i></button>
                             </form>
                             {% endif %}
                         </figure>
@@ -70,8 +77,11 @@
                     <div class="timeline-info">
                         <ul>
                             <li class="admin-name">
-                                <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user.user.username}}</b>
-                                    <!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>-->
+                                <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b> <i
+                                        class="fa fa-at" style="color: #000000;" aria-hidden="true"></i>{{user.user.username}}</b>
+                                    {% if actual_user %}
+                                    <i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>
+                                    {% endif %}
                                 </h5>
                                 <!--<span>Group Admin</span>-->
                             </li>
@@ -100,7 +110,13 @@
 </section><!-- top area -->
 <section>
     <div class="bio">
-        Bio goes here...
+        <span> {{user.user.first_name}} |  {{user.user.last_name}} <br> </span>
+        <span class="block capitalize text-sm">Joined: {{ user.user.date_joined }} <br>Last seen: {{user.user.last_login}} </span>
+    </div>
+    <div class="bio">
+
+        <br>
+        {{user.about_me}}
     </div>
 </section>
 
@@ -127,7 +143,9 @@
                                            href="/#{{post.id}}"
                                            title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
                                             <img src="{{post.post_image.url}}"
-                                                 style="height: 250px; width: 300px;" alt=""></a>
+                                                 style="height: 250px; width: 300px;   border: dashed;
+                                                    border-width: 2px 2px;  border-radius: 40px;"
+                                                 alt="{{post.id}}"></a>
                                     </li>
                                     {% endfor %}
 
