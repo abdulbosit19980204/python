@@ -23,10 +23,27 @@ def home_view(request):
     return render(request, 'index.html', context=d)
 
 
-
-
 def profile_view(request):
-    return render(request, 'profile.html')
+    user_id = request.GET.get('user_id')
+    user = MyUser.objects.filter(user_id=user_id).first()
+    current_user = MyUser.objects.filter(user=request.user).first()
+    posts = Post.objects.filter(author=user)
+    follower_count = FollowMyUser.objects.filter(following=user).count()
+    following_count = FollowMyUser.objects.filter(follower=user).count()
+
+    if user_id == current_user.user.id:
+        actual_user = True
+    else:
+        actual_user = False
+    d = {
+        "user": user,
+        "actual_user": actual_user,
+        "posts": posts,
+        "post_count": posts.count(),
+        "following_count": following_count,
+        "follower_count": follower_count,
+    }
+    return render(request, 'profile.html', context=d)
 
 
 def post_upload_view(request):
