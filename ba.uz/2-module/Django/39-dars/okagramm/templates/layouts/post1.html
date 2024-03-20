@@ -128,10 +128,10 @@
             </div>
             <div class="">
                 {% if post.like_count > 1 %}
-                Liked <strong> {{ likes.last.author.user.username }} </strong> and <strong> {{ post.like_count|add:-1}}
+                Liked <strong> {{ likes.last.author.user.first_name }} </strong> and <strong> {{post.like_count|add:-1}}
                 Others </strong>
                 {% elif post.like_count == 1 %}
-                Liked <strong> {{ likes.last.author.user.username }} </strong>
+                Liked <strong> {{ likes.last.author.user.first_name }} </strong>
                 {% else %}
                 <span class="block capitalize text-sm"> You will be the first! </span>
                 {% endif %}

@@ -23,8 +23,6 @@ def home_view(request):
     return render(request, 'index.html', context=d)
 
 
-def setting_view(request):
-    return render(request, 'setting.html')
 
 
 def profile_view(request):

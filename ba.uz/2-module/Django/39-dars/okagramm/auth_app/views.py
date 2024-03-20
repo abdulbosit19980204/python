@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from blog.models import MyUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from blog.models import MyUser
 
 
 def sign_in_view(request):
@@ -49,3 +49,29 @@ def sign_up_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/auth/signin')
+
+
+@login_required(login_url='/signin')
+def setting_view(request):
+    user = User.objects.filter(id=request.user.id).first()
+    d = {
+        "user": user
+    }
+    if request.method == "POST":
+        data = request.POST
+        firstname = data['firstname']
+        lastname = data['lastname']
+        email = data['email']
+        about = data['about']
+        relationship = data['relationship']
+        location = data['location']
+        working_at = data['working_at']
+
+        user.first_name = firstname
+        user.last_name = lastname
+
+        user.email = email
+        user.save(update_fields=['first_name', 'last_name', 'email'])
+        return redirect('/')
+
+    return render(request, 'setting.html')
