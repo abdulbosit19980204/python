@@ -11,7 +11,7 @@
                          class="bg-gray-200 border border-white rounded-full w-8 h-8">
                 </div>
             </a>
-            <span class="block capitalize font-semibold "> {{author.user.username}} </span>
+            <span class="block capitalize font-semibold "> {{author.user.first_name}} {{author.user.last_name}} </span>
         </div>
         <div>
             <a href="#"> <i
@@ -108,13 +108,17 @@
             </a>
         </div>
         <div class="flex items-center space-x-3">
+
             <div class="flex items-center">
+                {% with count=0 %}
                 {% for like in likes %}
-                {% if like.post.id == post.id %}
+                {% if like.post.id == post.id and count < 3 %}
                 <img src="{{ like.author.user_image.url }}" alt=""
                      class="w-6 h-6 rounded-full border-2 border-white ">
+<!--                {{count|add:1}}-->
                 {% endif %}
                 {% endfor %}
+                {% endwith %}
                 <!--                <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt=""-->
                 <!--                     class="w-6 h-6 rounded-full border-2 border-white ">-->
                 <!--                <img src="{% static 'assets/images/avatars/avatar-4.jpg' %}" alt=""-->

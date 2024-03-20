@@ -65,3 +65,22 @@ def post_like_view(request):
             disliked = is_liked.delete()
         return redirect('/#{}'.format(post_id))
     return render(request, 'index.html')
+
+
+def following_view(request):
+    user_id = request.GET.get('user_id')
+    my_user = MyUser.objects.filter(user=request.user).first()
+
+    following = FollowMyUser.objects.filter(follower=my_user, following_id=user_id)
+    if not following:
+
+        follow = FollowMyUser.objects.create(follower=my_user, following_id=user_id)
+        follow.save()
+        my_user.follower_count += 1
+        my_user.save(update_fields=['follower_count'])
+    else:
+        following.delete()
+        my_user.follower_count -= 1
+        my_user.save(update_fields=['follower_count'])
+    return redirect('/')
+    # return render(request, 'index.html')
