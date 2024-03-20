@@ -11,6 +11,7 @@ def home_view(request):
     comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
     users = MyUser.objects.exclude(user=request.user)
+
     likes = LikePost.objects.all()
     d = {
         "posts": posts,
@@ -88,4 +89,3 @@ def following_view(request):
         follow_c.follower_count -= 1
         follow_c.save(update_fields=['follower_count'])
     return redirect('/')
-    # return render(request, 'index.html')

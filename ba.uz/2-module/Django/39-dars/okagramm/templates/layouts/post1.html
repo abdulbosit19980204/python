@@ -128,7 +128,7 @@
             </div>
             <div class="">
                 {% if post.like_count > 1 %}
-                Liked <strong> {{ likes.last.author.user.username }} </strong> and <strong> {{ post.like_count}}
+                Liked <strong> {{ likes.last.author.user.username }} </strong> and <strong> {{ post.like_count|add:-1}}
                 Others </strong>
                 {% elif post.like_count == 1 %}
                 Liked <strong> {{ likes.last.author.user.username }} </strong>
