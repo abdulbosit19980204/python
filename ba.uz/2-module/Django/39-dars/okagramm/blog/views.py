@@ -58,11 +58,16 @@ def post_like_view(request):
         post_id = data['post_id']
         author = MyUser.objects.filter(user=request.user).first()
         is_liked = LikePost.objects.filter(author=author, post_id=post_id)
+        post = Post.objects.filter(id=post_id).first()
         if not is_liked:
-            liked = LikePost.objects.create(author=author, post_id=post_id)
+            liked = LikePost.objects.create(author=author, post_id=post_id, )
             liked.save()
+            post.like_count += 1
+            post.save(update_fields=['like_count'])
         else:
             disliked = is_liked.delete()
+            post.like_count -= 1
+            post.save(update_fields=['like_count'])
         return redirect('/#{}'.format(post_id))
     return render(request, 'index.html')
 
@@ -70,17 +75,17 @@ def post_like_view(request):
 def following_view(request):
     user_id = request.GET.get('user_id')
     my_user = MyUser.objects.filter(user=request.user).first()
-
+    follow_c = MyUser.objects.filter(id=user_id).first()
     following = FollowMyUser.objects.filter(follower=my_user, following_id=user_id)
     if not following:
 
         follow = FollowMyUser.objects.create(follower=my_user, following_id=user_id)
         follow.save()
-        my_user.follower_count += 1
-        my_user.save(update_fields=['follower_count'])
+        follow_c.follower_count += 1
+        follow_c.save(update_fields=['follower_count'])
     else:
         following.delete()
-        my_user.follower_count -= 1
-        my_user.save(update_fields=['follower_count'])
+        follow_c.follower_count -= 1
+        follow_c.save(update_fields=['follower_count'])
     return redirect('/')
     # return render(request, 'index.html')

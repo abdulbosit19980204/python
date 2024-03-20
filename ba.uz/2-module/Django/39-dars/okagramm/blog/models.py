@@ -32,6 +32,7 @@ class MyUser(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     post_image = models.ImageField(upload_to='post/', blank=True, null=True)
+    like_count = models.PositiveIntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

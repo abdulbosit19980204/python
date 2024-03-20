@@ -115,7 +115,7 @@
                 {% if like.post.id == post.id and count < 3 %}
                 <img src="{{ like.author.user_image.url }}" alt=""
                      class="w-6 h-6 rounded-full border-2 border-white ">
-<!--                {{count|add:1}}-->
+                <!--                {{count|add:1}}-->
                 {% endif %}
                 {% endfor %}
                 {% endwith %}
@@ -127,7 +127,7 @@
                 <!--                     class="w-6 h-6 rounded-full border-2 border-white  -ml-2">-->
             </div>
             <div class="">
-                Liked <strong> {{ likes.first.author.user.username }} </strong> and <strong> {{forloop.counter}}
+                Liked <strong> {{ likes.first.author.user.username }} </strong> and <strong> {{ post.like_count}}
                 Others </strong>
             </div>
         </div>
