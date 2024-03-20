@@ -8,9 +8,7 @@ class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_image = models.ImageField(upload_to='user/', default='default/user.avif')
     follower_count = models.PositiveIntegerField(default=0)
-    # first_name = models.CharField(max_length=120, blank=True, null=True)
-    # last_name = models.CharField(max_length=120, blank=True, null=True)
-    # email = models.EmailField(blank=True, null=True)
+
     about_me = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     working_at = models.CharField(max_length=255, blank=True, null=True)

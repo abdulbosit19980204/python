@@ -60,26 +60,27 @@
                     <div class="col-span-2">
                         <label for="about">About me</label>
                         <textarea id="about" name="about" rows="3"
-                                  class="shadow-none bg-gray-100">{{user.about}}</textarea>
+                                  class="shadow-none bg-gray-100">{{my_user.about_me}}</textarea>
                     </div>
                     <div class="col-span-2">
                         <label for=""> Location</label>
-                        <input name="location" value="{{user.location}}" type="text" placeholder=""
+                        <input name="location" value="{{my_user.location}}" type="text" placeholder=""
                                class="shadow-none bg-gray-100">
                     </div>
                     <div>
                         <label for=""> Working at</label>
-                        <input name="working_at" value="{{user.location}}" type="text" placeholder=""
+                        <input name="working_at" value="{{my_user.location}}" type="text" placeholder=""
                                class="shadow-none bg-gray-100">
                     </div>
                     <div>
                         <label for=""> Relationship </label>
                         <select id="relationship" name="relationship" class="shadow-none bg-gray-100">
-                            <option value="0">None</option>
-                            <option value="1">Single</option>
-                            <option value="2">In a relationship</option>
-                            <option value="3">Married</option>
-                            <option value="4">Engaged</option>
+                            <option value="{{my_user.relationship}}">{{my_user.relationship}}</option>
+                            <option value="None">None</option>
+                            <option value="Single">Single</option>
+                            <option value="In a relationship">In a relationship</option>
+                            <option value="Married">Married</option>
+                            <option value="Engaged">Engaged</option>
                         </select>
                     </div>
                 </div>

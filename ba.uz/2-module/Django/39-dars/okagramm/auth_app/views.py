@@ -54,8 +54,10 @@ def logout_view(request):
 @login_required(login_url='/signin')
 def setting_view(request):
     user = User.objects.filter(id=request.user.id).first()
+    my_user = MyUser.objects.filter(user=request.user).first()
     d = {
-        "user": user
+        "user": user,
+        "my_user": my_user,
     }
     if request.method == "POST":
         data = request.POST
@@ -69,9 +71,15 @@ def setting_view(request):
 
         user.first_name = firstname
         user.last_name = lastname
-
         user.email = email
         user.save(update_fields=['first_name', 'last_name', 'email'])
-        return redirect('/')
 
-    return render(request, 'setting.html')
+        my_user.about_me = about
+        my_user.relationship = relationship
+        my_user.location = location
+        my_user.working_at = working_at
+        my_user.save(update_fields=['about_me', 'relationship', 'location', 'working_at'])
+
+        return redirect('/auth/settings', context=d)
+
+    return render(request, 'setting.html', context=d)
