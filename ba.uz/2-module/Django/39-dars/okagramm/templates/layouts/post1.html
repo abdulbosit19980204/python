@@ -127,8 +127,14 @@
                 <!--                     class="w-6 h-6 rounded-full border-2 border-white  -ml-2">-->
             </div>
             <div class="">
-                Liked <strong> {{ likes.first.author.user.username }} </strong> and <strong> {{ post.like_count}}
+                {% if post.like_count > 1 %}
+                Liked <strong> {{ likes.last.author.user.username }} </strong> and <strong> {{ post.like_count}}
                 Others </strong>
+                {% elif post.like_count == 1 %}
+                Liked <strong> {{ likes.last.author.user.username }} </strong>
+                {% else %}
+                <span class="block capitalize text-sm"> You will be the first! </span>
+                {% endif %}
             </div>
         </div>
 
