@@ -42,8 +42,11 @@
             <span style="color: white; font-size: 27px;"><b>{{post_count}} Post</b></span>
             <span style="color: white; font-size: 27px;"><b>{{follower_count}} followers</b></span>
             <span style="color: white; font-size: 27px;"><b>{{following_count}} following</b></span>
+            {% if actual_user %}
+            <a> Follow</a>
+            {% else %}
             <a href="/user/follow/?user_id={{user.id}}"> Follow</a>
-
+            {% endif %}
         </div>
 
         {% if actual_user %}
