@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_image = models.ImageField(upload_to='user/', default='default/user.avif')
+    cover_image = models.ImageField(upload_to='user/cover/', default='user/setting/timeline-1.avif')
     follower_count = models.PositiveIntegerField(default=0)
 
     about_me = models.TextField(blank=True, null=True)

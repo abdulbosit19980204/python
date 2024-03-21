@@ -30,8 +30,7 @@ def profile_view(request):
     posts = Post.objects.filter(author=user)
     follower_count = FollowMyUser.objects.filter(following=user).count()
     following_count = FollowMyUser.objects.filter(follower=user).count()
-    print("curent:", current_user)
-    print("user:", user)
+
     if user.id == current_user.id:
         actual_user = True
     else:
@@ -45,6 +44,25 @@ def profile_view(request):
         "follower_count": follower_count,
     }
     return render(request, 'profile.html', context=d)
+
+
+def profile_image_view(request):
+    user_id = request.user.id
+    my_user = MyUser.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        data = request.POST
+        files = request.FILES
+        print('data:', data)
+        print('files:', files)
+        cover_image = files.get('cover_image', None)
+        user_image = files.get('user_image', None)
+        if cover_image is not None:
+            my_user.cover_image = request.FILES['cover_image']
+            my_user.save(update_fields=['cover_image', ])
+        elif user_image is not None:
+            my_user.user_image = request.FILES['user_image']
+            my_user.save(update_fields=['user_image', ])
+    return redirect('/profile?user_id={}'.format(user_id))
 
 
 def post_upload_view(request):
