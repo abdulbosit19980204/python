@@ -50,10 +50,7 @@ def profile_image_view(request):
     user_id = request.user.id
     my_user = MyUser.objects.filter(user=request.user).first()
     if request.method == "POST":
-        data = request.POST
         files = request.FILES
-        print('data:', data)
-        print('files:', files)
         cover_image = files.get('cover_image', None)
         user_image = files.get('user_image', None)
         if cover_image is not None:
