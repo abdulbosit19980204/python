@@ -33,6 +33,8 @@ class Post(models.Model):
     post_image = models.ImageField(upload_to='post/', blank=True, null=True)
     like_count = models.PositiveIntegerField(default=0)
 
+    write_comment = models.BooleanField(default=True)
+    disable_btn_title = models.TextField(max_length=15, default="Disable")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

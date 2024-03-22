@@ -106,6 +106,19 @@ def post_like_view(request):
     return render(request, 'index.html')
 
 
+def post_comment_disabled_view(request):
+    post_id = request.GET.get('post_id')
+    post = Post.objects.filter(id=post_id).first()
+    if post.write_comment:
+        post.write_comment = False
+        post.disable_btn_title = "Enable"
+    else:
+        post.write_comment = True
+        post.disable_btn_title = "Disabled"
+    post.save(update_fields=['write_comment', 'disable_btn_title'])
+    return redirect('/#{}'.format(post_id))
+
+
 def post_delete_view(request):
     post_id = request.GET.get('post_id')
     post = Post.objects.filter(id=post_id).first()
