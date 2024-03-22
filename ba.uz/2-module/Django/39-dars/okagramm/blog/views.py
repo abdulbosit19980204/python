@@ -211,11 +211,12 @@ def notification_read_view(request):
     notification_id = request.GET.get('notification_id')
     notification = Notification.objects.filter(id=notification_id).first()
     if not notification.post:
-        notification.is_read = True
-        notification.save(update_fields=['is_read'])
+        # notification.is_read = True
+        # notification.save(update_fields=['is_read'])
+        notification.delete()
         return redirect('/profile/?user_id={}'.format(notification.reporter_user.user.id))
-
     else:
-        notification.is_read = True
-        notification.save(update_fields=['is_read'])
+        # notification.is_read = True
+        # notification.save(update_fields=['is_read'])
+        notification.delete()
         return redirect('/#{}'.format(notification.post.id))
