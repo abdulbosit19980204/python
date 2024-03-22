@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
+from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser, Notification
 from django.db.models import Q
+
+import requests
+
+BOT_TOKEN = '6189703946:AAGb1TA2yDg-sdu0c_AIDn39_07AuzvlZgE'
+CHAT_ID = '1209619850'
 
 
 # Create your views here.
@@ -12,7 +17,7 @@ def home_view(request):
     comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
     users = MyUser.objects.exclude(user=request.user)
-
+    notifications = Notification.objects.all()
     likes = LikePost.objects.all()
     d = {
         "posts": posts,
@@ -21,6 +26,7 @@ def home_view(request):
         "comments": comments,
         "likes": likes,
         "searched": False,
+        "notifications": notifications,
     }
     return render(request, 'index.html', context=d)
 
@@ -80,7 +86,26 @@ def post_comment_view(requsts):
         post_id = data["post_id"]
         author = MyUser.objects.filter(user=requsts.user).first()
         obj = CommentPost.objects.create(message=message, post_id=post_id, author=author)
+        post = Post.objects.filter(id=post_id).first()
         obj.save()
+        message = "Postingizga fikr bildirildi"
+        notification = Notification.objects.create(user=post.author, message=message, reporter_user=author, post=post)
+        notification.save()
+        TEXT = """
+                Name: {} 
+                Lastname: {} 
+                Email: {} 
+                -------------------------
+                {} {} postiga fikir bildirdi 
+                korish: http://127.0.0.1:8000/#{{}}
+                ---------------
+
+                """.format(author.user.first_name, author.user.last_name, author.user.email,
+                           post.author.user.first_name,
+                           post.author.user.last_name, post_id)
+
+        url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={TEXT}'
+        response = requests.get(url)
         return redirect('/#{}'.format(post_id))
     return render(requsts, 'index.html')
 
@@ -98,10 +123,18 @@ def post_like_view(request):
             liked.save()
             post.like_count += 1
             post.save(update_fields=['like_count'])
+            message = "Postingizga like bosdi"
+            notification = Notification.objects.create(user=post.author, message=message, reporter_user=author,
+                                                       post=post)
+            notification.save()
         else:
             disliked = is_liked.delete()
             post.like_count -= 1
             post.save(update_fields=['like_count'])
+            message = "Postingizga dislike bosdi"
+            notification = Notification.objects.create(user=post.author, message=message, reporter_user=author,
+                                                       post=post)
+            notification.save()
         return redirect('/#{}'.format(post_id))
     return render(request, 'index.html')
 
@@ -137,10 +170,16 @@ def following_view(request):
         follow.save()
         follow_c.follower_count += 1
         follow_c.save(update_fields=['follower_count'])
+        message = "Yangi follower"
+        notification = Notification.objects.create(user=follow_c, message=message, reporter_user=my_user, )
+        notification.save()
     else:
         following.delete()
         follow_c.follower_count -= 1
         follow_c.save(update_fields=['follower_count'])
+        message = " Sizni Follow qilishni to'xtatdi"
+        notification = Notification.objects.create(user=follow_c, message=message, reporter_user=my_user, )
+        notification.save()
     return redirect('/')
 
 

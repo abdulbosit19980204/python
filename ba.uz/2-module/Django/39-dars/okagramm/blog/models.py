@@ -57,6 +57,7 @@ class CommentPost(models.Model):
 class LikePost(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    liked = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -64,9 +65,26 @@ class LikePost(models.Model):
 class FollowMyUser(models.Model):
     follower = models.ForeignKey(MyUser, related_name='follower_user', on_delete=models.CASCADE)
     following = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-
+    follow = models.BooleanField(default=False)
+    follow_title = models.TextField(max_length=15, default="Follow")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.following.user.username
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    reporter_user = models.ForeignKey(MyUser, related_name="notified_user", on_delete=models.CASCADE, blank=True,
+                                      null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+
+    message = models.TextField(max_length=200)
+    is_read = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.message
