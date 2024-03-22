@@ -106,6 +106,13 @@ def post_like_view(request):
     return render(request, 'index.html')
 
 
+def post_delete_view(request):
+    post_id = request.GET.get('post_id')
+    post = Post.objects.filter(id=post_id).first()
+    post.delete()
+    return redirect('/')
+
+
 def following_view(request):
     user_id = request.GET.get('user_id')
     my_user = MyUser.objects.filter(user=request.user).first()
