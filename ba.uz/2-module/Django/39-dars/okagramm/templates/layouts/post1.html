@@ -30,6 +30,13 @@
                     <li>
                         <a href="#"
                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                            <i class="uil-favorite mr-1"></i> Add favorites
+                        </a>
+                    </li>
+                    {% if user.user.id == author.user.id %}
+                    <li>
+                        <a href="#"
+                           class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
                             <i class="uil-edit-alt mr-1"></i> Edit Post
                         </a>
                     </li>
@@ -37,12 +44,6 @@
                         <a href="#"
                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
                             <i class="uil-comment-slash mr-1"></i> Disable comments
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
-                            <i class="uil-favorite mr-1"></i> Add favorites
                         </a>
                     </li>
                     <li>
@@ -54,7 +55,9 @@
                             <i class="uil-trash-alt mr-1"></i> Delete
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
+
 
             </div>
         </div>
