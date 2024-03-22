@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Post, LikePost, CommentPost, MyUser, FollowMyUser
+from django.db.models import Q
 
 
 # Create your views here.
@@ -19,6 +20,7 @@ def home_view(request):
         "user": user,
         "comments": comments,
         "likes": likes,
+        "searched": False,
     }
     return render(request, 'index.html', context=d)
 
@@ -120,3 +122,27 @@ def following_view(request):
         follow_c.follower_count -= 1
         follow_c.save(update_fields=['follower_count'])
     return redirect('/')
+
+
+def searched_view(request):
+    d = {}
+    if request.method == "POST":
+        data = request.POST
+        query = data['searched_text']
+        return redirect(f'/searched?q={query}')
+    query = request.GET.get('q')
+    my_user = MyUser.objects.filter(user=request.user).first()
+    if query is not None and len(query) >= 1:
+        users = MyUser.objects.exclude(user=request.user).filter(
+            Q(user__first_name__icontains=query) | Q(user__username__icontains=query) | Q(
+                user__last_name__icontains=query) | Q(
+                about_me__icontains=query))
+    else:
+        # users = MyUser.objects.exclude(user=request.user)
+        return redirect('/')
+    d = {
+        "users": users,
+        "user": my_user,
+        "searched": True,
+    }
+    return render(request, 'searched.html', context=d)
