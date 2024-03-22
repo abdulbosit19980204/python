@@ -17,7 +17,7 @@ def home_view(request):
     comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
     users = MyUser.objects.exclude(user=request.user)
-    notifications = Notification.objects.all()
+    notifications = Notification.objects.filter(is_read=False)
     likes = LikePost.objects.all()
     d = {
         "posts": posts,
@@ -205,3 +205,17 @@ def searched_view(request):
         "searched": True,
     }
     return render(request, 'searched.html', context=d)
+
+
+def notification_read_view(request):
+    notification_id = request.GET.get('notification_id')
+    notification = Notification.objects.filter(id=notification_id).first()
+    if not notification.post:
+        notification.is_read = True
+        notification.save(update_fields=['is_read'])
+        return redirect('/profile/?user_id={}'.format(notification.reporter_user.user.id))
+
+    else:
+        notification.is_read = True
+        notification.save(update_fields=['is_read'])
+        return redirect('/#{}'.format(notification.post.id))
