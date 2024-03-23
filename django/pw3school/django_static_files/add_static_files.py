@@ -41,4 +41,3 @@ when you deploy your project to a public server.
 # That is right, the example still does not work.
 # You will have install a third-party library in order to handle static files.
 # There are many alternatives, we will show you how to use a Python library called "WhiteNoise" in the next chapter.
-
