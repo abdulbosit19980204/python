@@ -16,7 +16,8 @@ def home_view(request):
     posts = Post.objects.all()[::-1]
     comments = CommentPost.objects.all()
     user = MyUser.objects.filter(user=request.user).first()
-    users = MyUser.objects.exclude(user=request.user)
+    users = MyUser.objects.exclude(user=request.user).exclude(followmyuser__follower__user=request.user)
+
     notifications = Notification.objects.filter(is_read=False)
     likes = LikePost.objects.all()
     d = {
@@ -189,6 +190,44 @@ def following_view(request):
     return redirect('/')
 
 
+def follower_view(request):
+    # uid = request.GET.get('uid')
+    follower_uid = request.GET.get('follower_uid', None)
+    following_uid = request.GET.get('following_uid', None)
+    print("following_uid", following_uid, "follower_uid", follower_uid)
+    if follower_uid is not None:
+        follower = FollowMyUser.objects.filter(following__id=follower_uid)
+        followed = []
+        title = "Your Followers"
+        for i in MyUser.objects.all():
+            print(type(i))
+            for j in follower:
+                print(type(j))
+                if j.follower == i:
+                    followed.append(i)
+
+    elif following_uid is not None:
+        follower = FollowMyUser.objects.filter(follower__id=following_uid)
+        title = "Your are Following"
+        followed = []
+        for i in MyUser.objects.all():
+            print(type(i))
+            for j in follower:
+                print(type(j))
+                if j.following == i:
+                    followed.append(i)
+    print("follower", followed)
+    my_user = MyUser.objects.filter(user=request.user).first()
+    followers = FollowMyUser.objects.filter(following=my_user)
+    d = {
+        "users": followed,
+        "user": my_user,
+        "searched": True,
+        "title": title,
+    }
+    return render(request, 'searched.html', context=d)
+
+
 def searched_view(request):
     d = {}
     if request.method == "POST":
@@ -209,6 +248,7 @@ def searched_view(request):
         "users": users,
         "user": my_user,
         "searched": True,
+        "title": "Users You Searched",
     }
     return render(request, 'searched.html', context=d)
 
