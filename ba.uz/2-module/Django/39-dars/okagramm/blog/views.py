@@ -97,7 +97,7 @@ def post_comment_view(requsts):
                 Email: {} 
                 -------------------------
                 {} {} postiga fikir bildirdi 
-                korish: http://127.0.0.1:8000/#{{}}
+                korish: http://127.0.0.1:8000/%23{}
                 ---------------
 
                 """.format(author.user.first_name, author.user.last_name, author.user.email,
