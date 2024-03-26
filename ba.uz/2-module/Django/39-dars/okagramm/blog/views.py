@@ -199,6 +199,7 @@ def follower_view(request):
         follower = FollowMyUser.objects.filter(following__id=follower_uid)
         followed = []
         title = "Your Followers"
+        unfollow = False
         for i in MyUser.objects.all():
             print(type(i))
             for j in follower:
@@ -209,6 +210,7 @@ def follower_view(request):
     elif following_uid is not None:
         follower = FollowMyUser.objects.filter(follower__id=following_uid)
         title = "Your are Following"
+        unfollow = True
         followed = []
         for i in MyUser.objects.all():
             print(type(i))
@@ -224,6 +226,7 @@ def follower_view(request):
         "user": my_user,
         "searched": True,
         "title": title,
+        "unfollow": unfollow
     }
     return render(request, 'searched.html', context=d)
 

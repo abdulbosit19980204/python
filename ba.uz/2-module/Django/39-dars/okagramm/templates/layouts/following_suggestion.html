@@ -28,10 +28,15 @@
                         <span class="block capitalize text-sm">{{ user.user.last_login }}  </span>
                     </div>
                 </div>
-
-                <a href="user/follow/?user_id={{user.id}}"
+                {% if unfollow %}
+                <a href="/user/follow/?user_id={{user.id}}"
+                   class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 ">
+                    Unfollow </a>
+                {% else %}
+                <a href="/user/follow/?user_id={{user.id}}"
                    class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 ">
                     Follow </a>
+                {% endif %}
             </div>
             {% endfor %}
             {% else %}
