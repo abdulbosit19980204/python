@@ -88,24 +88,29 @@ def post_comment_view(requsts):
         obj = CommentPost.objects.create(message=message, post_id=post_id, author=author)
         post = Post.objects.filter(id=post_id).first()
         obj.save()
-        message = "Postingizga fikr bildirildi"
+        # message = "Postingizga fikr bildirildi"
         notification = Notification.objects.create(user=post.author, message=message, reporter_user=author, post=post)
         notification.save()
+        rf = requests.get('http://127.0.0.1:8000/media/{}'.format(post.post_image))
+        file = {"photo": post.post_image}
         TEXT = """
                 Name: {} 
                 Lastname: {} 
                 Email: {} 
                 -------------------------
                 {} {} postiga fikir bildirdi 
+                -------------------------------
+                Comment: {}
+                -------------------------------
                 korish: http://127.0.0.1:8000/%23{}
-                ---------------
+                -------------------------------
 
                 """.format(author.user.first_name, author.user.last_name, author.user.email,
                            post.author.user.first_name,
-                           post.author.user.last_name, post_id)
+                           post.author.user.last_name, message, post_id)
 
-        url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={TEXT}'
-        response = requests.get(url)
+        url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto?chat_id={CHAT_ID}&caption={TEXT}'
+        response = requests.post(url, files=file)
         return redirect('/#{}'.format(post_id))
     return render(requsts, 'index.html')
 
