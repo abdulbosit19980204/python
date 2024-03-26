@@ -88,12 +88,13 @@ def post_comment_view(requsts):
         obj = CommentPost.objects.create(message=message, post_id=post_id, author=author)
         post = Post.objects.filter(id=post_id).first()
         obj.save()
-        # message = "Postingizga fikr bildirildi"
+        message = "Postingizga fikr bildirildi"
         notification = Notification.objects.create(user=post.author, message=message, reporter_user=author, post=post)
         notification.save()
         rf = requests.get('http://127.0.0.1:8000/media/{}'.format(post.post_image))
         file = {"photo": post.post_image}
         TEXT = """
+        
                 Name: {} 
                 Lastname: {} 
                 Email: {} 
@@ -107,7 +108,7 @@ def post_comment_view(requsts):
 
                 """.format(author.user.first_name, author.user.last_name, author.user.email,
                            post.author.user.first_name,
-                           post.author.user.last_name, message, post_id)
+                           post.author.user.last_name, data['message'], post_id)
 
         url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto?chat_id={CHAT_ID}&caption={TEXT}'
         response = requests.post(url, files=file)
@@ -225,3 +226,11 @@ def notification_read_view(request):
         # notification.save(update_fields=['is_read'])
         notification.delete()
         return redirect('/#{}'.format(notification.post.id))
+
+
+def notification_mark_read_view(request):
+    user = MyUser.objects.filter(user=request.user).first()
+    notifications = Notification.objects.filter(user=user)
+    notifications.delete()
+
+    return redirect('/')
