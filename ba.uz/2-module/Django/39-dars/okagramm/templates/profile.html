@@ -67,7 +67,7 @@
                 <div class="col-lg-2 col-sm-3">
                     <div class="user-avatar">
                         <figure>
-                            <img src="{{user.user_image.url}}"
+                            <img onclick="window.location = '/'" src="{{user.user_image.url}}"
                                  style="height: 250px; width: 100%; " alt="">
                             {% if actual_user %}
                             <form class="edit-phto" method="post" action="/profile/image/"
