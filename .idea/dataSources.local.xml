@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="PY-233.13763.11">
-    <data-source name="smbd@localhost" uuid="4fed2ed9-8318-4630-8f9c-f6749f02c424">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+  <component name="dataSourceStorageLocal" created-in="PY-233.15026.15">
+    <data-source name="smdb@localhost" uuid="faefb958-2516-4956-93bc-20177e7b14a2">
+      <database-info product="PostgreSQL" version="16.2 (Ubuntu 16.2-1.pgdg22.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.2" exact-driver-version="42.6">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <schema-mapping />
-    </data-source>
-    <data-source name="postgres@localhost" uuid="2f13d02b-9cec-42b9-a0f7-6b90be6babdc">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
-      <secret-storage>master_key</secret-storage>
-      <schema-mapping />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>
