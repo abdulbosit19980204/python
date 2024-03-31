@@ -3,17 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>744</IntrospectionStateNumber>
+      <IntrospectionStateNumber>749</IntrospectionStateNumber>
       <ServerVersion>16.2</ServerVersion>
-      <StartupTime>1711648170</StartupTime>
+      <StartupTime>1711773559</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1407,7 +1399,7 @@ true posixrules
 14210||10|C|G
 14210||-9223372036854775808|U|G
 14210||10|U|G</Grants>
-      <IntrospectionStateNumber>744</IntrospectionStateNumber>
+      <IntrospectionStateNumber>749</IntrospectionStateNumber>
       <ObjectId>16388</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4831,28 +4823,82 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>744</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-03-29.04:41:18</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>749</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-03-30.13:32:57</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>523</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <table id="265" parent="264" name="post">
+    <table id="265" parent="264" name="course">
+      <ObjectId>16394</ObjectId>
+      <StateNumber>745</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="266" parent="264" name="enrolment">
+      <ObjectId>16404</ObjectId>
+      <StateNumber>748</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="267" parent="264" name="post">
       <ObjectId>16389</ObjectId>
       <StateNumber>742</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="265" name="title">
+    <table id="268" parent="264" name="student">
+      <ObjectId>16399</ObjectId>
+      <StateNumber>746</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="269" parent="265" name="id">
+      <DasType>bigint|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>745</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="270" parent="265" name="name">
+      <DasType>text|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>745</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="271" parent="266" name="student_id">
+      <DasType>bigint|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>748</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="272" parent="266" name="course_id">
+      <DasType>bigint|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>748</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="273" parent="267" name="title">
       <DasType>varchar(128)|0s</DasType>
       <Position>1</Position>
       <StateNumber>742</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="267" parent="265" name="description">
+    <column id="274" parent="267" name="description">
       <DasType>text|0s</DasType>
       <Position>2</Position>
       <StateNumber>742</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="275" parent="268" name="id">
+      <DasType>bigint|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>746</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="276" parent="268" name="name">
+      <DasType>text|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>746</StateNumber>
       <TypeId>25</TypeId>
     </column>
   </database-model>
