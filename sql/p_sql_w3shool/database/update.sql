@@ -54,4 +54,6 @@ SET color = 'white',
 WHERE brand = 'Toyota';
 
 
-SELECT
+SELECT *
+FROM cars;
+
