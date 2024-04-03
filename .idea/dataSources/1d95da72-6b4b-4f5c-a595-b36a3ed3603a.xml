@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>758</IntrospectionStateNumber>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
       <ServerVersion>16.2</ServerVersion>
       <StartupTime>1711946835</StartupTime>
       <TimeZones>true ACDT
@@ -801,7 +801,7 @@ false Zulu
 14643||10|C|G
 14643||-9223372036854775808|U|G
 14643||10|U|G</Grants>
-      <IntrospectionStateNumber>758</IntrospectionStateNumber>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4234,8 +4234,8 @@ false Zulu
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>758</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-04-03.02:37:11</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>766</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-04-03.02:38:55</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4246,25 +4246,19 @@ false Zulu
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="265" name="brand">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>1</Position>
-      <StateNumber>744</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="267" parent="265" name="model">
+    <column id="266" parent="265" name="model">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="268" parent="265" name="year">
+    <column id="267" parent="265" name="year">
       <DasType>varchar(4)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>748</StateNumber>
+      <StateNumber>762</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="265" name="price">
+    <column id="268" parent="265" name="price">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>744</StateNumber>
