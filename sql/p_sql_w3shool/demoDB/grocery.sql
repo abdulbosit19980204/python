@@ -3319,10 +3319,11 @@ WHERE country NOT IN ('USA', 'UK', 'France', 'Germany');
 
 SELECT o.order_id, p.product_name, p.product_id
 from order_details od
-JOIN orders o on o.order_id = od.order_id
-JOIN products p on od.product_id= p.product_id
+         JOIN orders o on o.order_id = od.order_id
+         JOIN products p on od.product_id = p.product_id
 group by o.order_id, p.product_name, o.order_id, p.product_id
 ;
 
-select count(od.product_id) from products
-JOIN order_details od on products.product_id = od.product_id;
+select count(od.product_id)
+from products
+         JOIN order_details od on products.product_id = od.product_id;
