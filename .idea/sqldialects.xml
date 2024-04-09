@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql/p_sql_w3shool/database/test.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/p_sql_w3shool/demoDB/grocery.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/sql/p_sql_w3shool/joins/cross_join.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/p_sql_w3shool/joins/innner_join.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/p_sql_w3shool/joins/right_join.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="PostgreSQL" />
