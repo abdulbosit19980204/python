@@ -32,3 +32,4 @@ FROM order_details
          LEFT JOIN customers ON orders.customer_id = customers.customer_id
 GROUP BY customer_name
 HAVING SUM(products.price) > 1000.00;
+
