@@ -190,15 +190,16 @@
                     {% if user.user.id == post.user.user.id %}
                     <li>
                         <a href="/#{{post.post.id}}">
-                            <div class="drop_avatar"><img src="{{ post.post.author.user_image.url }}"
-                                                          alt="">
+                            <div class="drop_avatar">
+                                <img src="{{ post.post.author.user_image.url }}" alt="">
                             </div>
                             <div class="drop_content">
                                 <strong> {{post.post.author.user.first_name}}
                                 </strong>
-                                <time> {{post.created_at|date:"d M Y"}}</time>
+<!--                                <time> {{post.created_at|date:"d M Y"}}</time>-->
                                 <p>@{{post.post.author.user.username|lower}} </p>
                             </div>
+                            <img style="width: 30%" src="{{ post.post.post_image.url }}" alt="">
                         </a>
                     </li>
                     {% endif %}

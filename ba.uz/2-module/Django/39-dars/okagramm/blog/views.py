@@ -293,8 +293,12 @@ def add_favorite_view(request):
         pid = request.POST.get('pid')
         post = Post.objects.filter(id=pid).first()
         user = MyUser.objects.filter(user=request.user).first()
-        favorited = FavoritePost.objects.create(user=user, post=post, favorited=True)
-        favorited.save()
+        favorite = FavoritePost.objects.filter(post=post, user=user).first()
+        if not favorite:
+            favorited = FavoritePost.objects.create(user=user, post=post, favorited=True, )
+            favorited.save()
+        else:
+            favorite.delete()
         return redirect('/#{}'.format(pid))
     else:
         return redirect('/')
