@@ -1,5 +1,6 @@
 CREATE TABLE post
 (
+    id           serial primary key,
     title        varchar(255) not null,
     description  text         not null,
     created_at   timestamp default CURRENT_TIMESTAMP,
@@ -15,4 +16,5 @@ where is_published = TRUE
 ORDER BY title
 ;
 
+DROP TABLE post;
 
