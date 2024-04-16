@@ -33,3 +33,4 @@ def result():
 # But by following the steps above, it will be able to do some performance optimizations.
 
 
+# Technical Details
