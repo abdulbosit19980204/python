@@ -93,3 +93,18 @@ async def root():
 
 # You could also use it to generate code automatically, for clients that communicate with your API.
 # For example, frontend, mobile or IoT applications
+
+# Recap, step by step
+
+# Step 1. import FastAPI
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+# FastAPI is a Python class that provides all the functionality for your API.
+# FastAPI is a class that inherits directly from Starlette
