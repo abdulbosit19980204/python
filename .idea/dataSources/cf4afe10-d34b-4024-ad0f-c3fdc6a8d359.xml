@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
+      <IntrospectionStateNumber>806</IntrospectionStateNumber>
       <ServerVersion>14.11</ServerVersion>
       <StartupTime>1713148124</StartupTime>
       <TimeZones>true ACDT
@@ -1400,7 +1400,7 @@ true posixrules
 13431||10|C|G
 13431||-9223372036854775808|U|G
 13431||10|U|G</Grants>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
+      <IntrospectionStateNumber>806</IntrospectionStateNumber>
       <ObjectId>16455</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4834,45 +4834,135 @@ true posixrules
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-04-15.04:32:54</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>806</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-04-15.05:26:36</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <table id="264" parent="263" name="post">
-      <ObjectId>16456</ObjectId>
-      <StateNumber>784</StateNumber>
+    <sequence id="264" parent="263" name="post_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>16463</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>789</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="265" parent="263" name="student_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>16474</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>805</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="266" parent="263" name="post">
+      <ObjectId>16464</ObjectId>
+      <StateNumber>789</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="265" parent="264" name="title">
-      <DasType>varchar(255)|0s</DasType>
+    <table id="267" parent="263" name="student">
+      <ObjectId>16475</ObjectId>
+      <StateNumber>805</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="268" parent="266" name="id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;post_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>784</StateNumber>
-      <TypeId>1043</TypeId>
+      <StateNumber>789</StateNumber>
+      <SequenceId>16463</SequenceId>
+      <TypeId>23</TypeId>
     </column>
-    <column id="266" parent="264" name="description">
-      <DasType>text|0s</DasType>
+    <column id="269" parent="266" name="title">
+      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>784</StateNumber>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="270" parent="266" name="description">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>789</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="267" parent="264" name="created_at">
+    <column id="271" parent="266" name="created_at">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-      <Position>3</Position>
-      <StateNumber>784</StateNumber>
+      <Position>4</Position>
+      <StateNumber>789</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="268" parent="264" name="is_published">
+    <column id="272" parent="266" name="is_published">
       <DasType>boolean|0s</DasType>
       <DefaultExpression>true</DefaultExpression>
-      <Position>4</Position>
-      <StateNumber>784</StateNumber>
+      <Position>5</Position>
+      <StateNumber>789</StateNumber>
       <TypeId>16</TypeId>
     </column>
+    <index id="273" parent="266" name="post_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16472</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>789</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="274" parent="266" name="post_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16473</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>789</StateNumber>
+      <UnderlyingIndexId>16472</UnderlyingIndexId>
+    </key>
+    <column id="275" parent="267" name="id">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;student_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>805</StateNumber>
+      <SequenceId>16474</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="276" parent="267" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>805</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="277" parent="267" name="age">
+      <DasType>integer|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>805</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="278" parent="267" name="university">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>805</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="279" parent="267" name="student_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16481</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>805</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="280" parent="267" name="student_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16482</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>805</StateNumber>
+      <UnderlyingIndexId>16481</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>
