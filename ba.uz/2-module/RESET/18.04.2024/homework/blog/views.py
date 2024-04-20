@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -60,5 +61,31 @@ def comment_view(request, pk):
 
 
 @api_view(http_method_names=['GET'])
-def search_view(request):
-    pass
+def search_view(request, keywoard):
+    post = Post.objects.filter(Q(title__icontains=keywoard) | Q(description__icontains=keywoard))
+    if post:
+        return Response(
+            status=status.HTTP_200_OK,
+            data={"message": sequalizers_post(post, many=True)}
+        )
+    return Response(
+        status=status.HTTP_404_NOT_FOUND,
+        data={"message": "There are no posts"}
+    )
+
+
+@api_view(http_method_names=['GET'])
+def category_view(request, pk):
+    posts = Post.objects.filter(category_id=pk, is_published=True)
+    if posts:
+        return Response(
+            status=status.HTTP_200_OK,
+            data={
+                "category": sequalizers_post(posts, many=True)[0]["category"],
+                "message": sequalizers_post(posts, many=True)
+            })
+
+    return Response(
+        status=status.HTTP_404_NOT_FOUND,
+        data={"message": "There are no posts"}
+    )
