@@ -37,3 +37,13 @@ def comments_view(request):
         status=status.HTTP_200_OK,
         data=commets_serialize(comments),
     )
+
+
+@api_view(http_method_names=['GET', 'POST'])
+def searched_view(request, skey):
+    posts = Post.objects.all()
+
+    return Response(
+        status=status.HTTP_200_OK,
+        data=data_serialize(posts, many=True),
+    )

@@ -93,7 +93,7 @@ async def get_posts():
     return {"posts": posts}
 
 
-async def get_post(pk: int):
+async def get_post_info(pk: int):
     for post in posts:
         if post['id'] == pk:
             return post
@@ -113,24 +113,24 @@ async def get_comments(post_id: int):
     return post_comments
 
 
-# @app.get('/article/{pk}')
-# async def get_post(pk: int):
-#     for post in posts:
-#         if post['id'] == pk:
-#             aid = post['author_id']
-#             post_comments = []
-#             for comment in comments:
-#                 if comment['post_id'] == post['id']:
-#                     post_comments.append(comment)
-#             for author in authors:
-#                 if author['id'] == aid:
-#                     return {"post": post, "author": author, "comments": post_comments}
-#     return {"message": "Post Not Found"}
+@app.get('/article/{pk}')
+async def get_post(pk: int):
+    for post in posts:
+        if post['id'] == pk:
+            aid = post['author_id']
+            post_comments = []
+            for comment in comments:
+                if comment['post_id'] == post['id']:
+                    post_comments.append(comment)
+            for author in authors:
+                if author['id'] == aid:
+                    return {"post": post, "author": author, "comments": post_comments}
+    return {"message": "Post Not Found"}
 
 
 @app.get('/posts/{pk}')
 async def get_posts(pk: int):
-    post = await get_post(pk)
+    post = await get_post_info(pk)
     author = await get_author(post['author_id'])
     post_comments = await get_comments(post['id'])
     return {"post": post, "author": author, "comments": post_comments}
