@@ -13,12 +13,17 @@ def home_view(request):
     return Response(
         status=status.HTTP_200_OK,
         data={
-            "posts": "api/v1/posts",
-            "post-detail": "api/v1/post/<int:pk>/",
-            "comments": "api/v1/comments/",
-            "comment-detail": "api/v1/comments/<int:pk>/",
-            "author": "api/v1/author/",
-            "author-detail": "api/v1/author/<int:pk>/",
+            "author": "Abdulbosit",
+            "active-api": {
+                "posts": "api/v1/posts",
+                "post-detail": "api/v1/post/<int:pk>/",
+                "comments": "api/v1/comments/",
+                "comment-detail": "api/v1/comments/<int:pk>/",
+                "author": "api/v1/author/",
+                "author-detail": "api/v1/author/<int:pk>/",
+                "search": "api/v1/search/",
+                "categories": "api/v1/categories/",
+            }
         }
     )
 
