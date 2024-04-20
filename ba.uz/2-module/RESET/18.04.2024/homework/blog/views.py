@@ -30,20 +30,23 @@ def home_view(request):
 
 @api_view(http_method_names=['GET'])
 def posts_view(request):
-    posts = Post.objects.filter(is_published=True)
-
+    posts = sequalizers_post(Post.objects.filter(is_published=True), many=True)
     return Response(
         status=status.HTTP_200_OK,
-        data={"message": sequalizers_post(posts, many=True)}
+        data={"message": posts}
     )
 
 
 @api_view(http_method_names=['GET'])
 def post_detail_view(request, pk):
     post_detail = Post.objects.filter(id=pk, is_published=True).first()
+    comments = Comment.objects.filter(post=post_detail, is_published=True)
+    post = sequalizers_post(post_detail)
+    post["comments"] = sequalizers_comment(comments, many=True)
     return Response(
         status=status.HTTP_200_OK,
-        data={"message": sequalizers_post(post_detail, many=False)}
+        data={"post": post,
+              }
     )
 
 
