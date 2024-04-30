@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import PostListAPIView, CategoriesListAPIView, CategoryRetrieveAPIView, CommentPostListAPIView, \
-    PostRetrieveAPIView, UserCreateAPIView
+    PostRetrieveAPIView
 
 urlpatterns = [
     path('categories/', CategoriesListAPIView.as_view()),
@@ -12,5 +12,4 @@ urlpatterns = [
     path('comments/', CommentPostListAPIView.as_view()),
     path('comments/<int:pk>', CommentPostListAPIView.as_view()),
 
-    path('user/create/', UserCreateAPIView.as_view()),
 ]

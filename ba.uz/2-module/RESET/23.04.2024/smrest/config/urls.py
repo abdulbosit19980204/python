@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.messages import api
 from django.urls import path, include
+from blog.views import home_view
 
 urlpatterns = [
+    path('', home_view),
     path('admin/', admin.site.urls),
     path('api/v1/', include('blog.urls')),
     path('api/v1/auth/', include('auth_app.urls')),
+
 ]
