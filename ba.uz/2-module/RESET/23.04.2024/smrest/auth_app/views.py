@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
 from blog.models import MyUser
-from .serializers import MyUserSerializer
+from .serializers import MyUserSerializer, UserSerializer
 
 
 @api_view(['GET'])
@@ -16,6 +16,7 @@ def signin_view(request):
         return Response(
             data={
                 'status': 'success',
+                'user': UserSerializer(request.user).data,
                 'message': 'User logged in'
             },
             status=status.HTTP_200_OK
@@ -25,14 +26,6 @@ def signin_view(request):
         data={
             "message": "You are not logged in"
         }
-    )
-
-
-@api_view(['POST'])
-def logout_view(request):
-    return Response(
-        data={'logged_out': True},
-        status=status.HTTP_200_OK
     )
 
 

@@ -7,6 +7,7 @@ class MyUser(models.Model):
     user_image = models.ImageField(upload_to='user/', default='default/user.avif')
     cover_image = models.ImageField(upload_to='user/cover/', default='user/setting/timeline-1.avif')
     follower_count = models.IntegerField(default=0)
+    following_count = models.IntegerField(default=0)
 
     about_me = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
@@ -27,6 +28,7 @@ class MyUser(models.Model):
 
 
 class Category(models.Model):
+    author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
 

@@ -2,6 +2,13 @@ from rest_framework import serializers
 
 from blog.models import MyUser, Post
 from blog.serializers import PostSerializer
+from django.contrib.auth import get_user_model
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = '__all__'
 
 
 class MyUserSerializer(serializers.ModelSerializer):
