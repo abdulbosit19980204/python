@@ -58,8 +58,8 @@ class Post(models.Model):
 
 
 class CommentPost(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
 
     created_at = models.DateTimeField(auto_now_add=True)

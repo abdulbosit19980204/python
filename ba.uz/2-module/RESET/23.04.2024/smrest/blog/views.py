@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView, \
+    CreateAPIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 
 from django.contrib.auth.hashers import make_password
@@ -77,13 +78,28 @@ class PostCreateAPIView(CreateAPIView):
         )
 
 
-class PostRetrieveAPIView(RetrieveUpdateDestroyAPIView):
+class PostRetrieveAPIView(RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated, ]
 
 
-class CommentRetriveAPIView(RetrieveUpdateDestroyAPIView):
+class PostRetriveEditAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def put(self, request, *args, **kwargs):
+        print(request.data)
+        post = Post.objects.filter(id=kwargs['pk']).first()
+        print(post)
+
+    def patch(self, request, *args, **kwargs):
+        post = Post.objects.filter(id=kwargs['pk']).first()
+        print(post)
+
+
+class CommentRetriveAPIView(RetrieveAPIView):
     queryset = CommentPost.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated, ]
@@ -98,6 +114,19 @@ class CommentCreateAPIView(CreateAPIView):
     queryset = CommentPost.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated, ]
+
+    def post(self, request, *args, **kwargs):
+        user = MyUser.objects.filter(user_id=request.user.id).first()
+        post = Post.objects.filter(id=request.data.get('post_id')).first()
+        print(request.data)
+        comment = CommentPost.objects.create(author=user, post=post, message=request.data.get('message'), )
+        comment.save()
+        return Response(
+            status=status.HTTP_201_CREATED,
+            data={
+                "data": CommentSerializer(comment).data
+            }
+        )
 
 
 class LikePostListAPIView(ListCreateAPIView):
@@ -204,9 +233,39 @@ def home_view(request):
 
         data={
             "admin": "admin/",
+            "1#####": "************************************************",
             "auth/": "api/v1/auth/",
+            "token/": "api/v1/token/",
+            "token/refresh/": "api/v1/token/refresh/",
+            "signin/": "api/v1/signin/",
+            "register/": "api/v1/register/",
+            "users/": "api/v1/users/",
+            "users/<int:pk>": "api/v1/users/<int:pk>",
+            "2#####": "*************************************************",
+
             "categories": "api/v1/categories/",
             "retrive_categories": "api/v1/categories/<int:pk>",
+            "categories/create": "api/v1/categories/create",
+            "3#####": "*************************************************",
+
+            "posts": "api/v1/posts/",
+            "posts/<int:pk>": "api/v1/posts/<int:pk>",
+            "posts/create": "api/v1/posts/create",
+            "4#####": "*************************************************",
+
+            "comments": "api/v1/comments/",
+            "comments/<int:pk>": "api/v1/comments/<int:pk>",
+            "comments/create": "api/v1/comments/create",
+            "5#####": "*************************************************",
+
+            "like": "api/v1/likes/",
+            "like/<int:pk>": "api/v1/likes/<int:pk>",
+            "like/create": "api/v1/likes/create",
+            "6#####": "*************************************************",
+
+            "followers/": "api/v1/followers/",
+            "followers/<int:pk>": "api/v1/followers/<int:pk>",
+            "followers/create": "api/v1/followers/create",
         },
         status=status.HTTP_200_OK
     )
