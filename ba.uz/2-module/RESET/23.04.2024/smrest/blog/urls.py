@@ -3,6 +3,7 @@ from .views import (CategoriesListAPIView, CategoryRetrieveAPIView, CategoriesCr
                     PostRetrieveAPIView, PostRetriveEditAPIView, PostCreateAPIView, CommentCreateAPIView,
                     CommentPostListAPIView,
                     FollowMyUserAPIView, FollowCreateAPIView, LikePostListAPIView, LikeCreateAPIView,
+                    PostFollowersListAPIView, SearchPostListAPIView
                     )
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     path('posts/<int:pk>', PostRetrieveAPIView.as_view()),
     path('posts/edit/<int:pk>/', PostRetriveEditAPIView.as_view()),
     path('posts/create/', PostCreateAPIView.as_view()),
+    path('posts/post-followers/', PostFollowersListAPIView.as_view()),
 
     path('comments/', CommentPostListAPIView.as_view()),
     path('comments/<int:pk>', CommentPostListAPIView.as_view()),
@@ -24,5 +26,7 @@ urlpatterns = [
 
     path('like/', LikePostListAPIView.as_view()),
     path('like/create/', LikeCreateAPIView.as_view()),
+
+    path('search/', SearchPostListAPIView.as_view()),
 
 ]

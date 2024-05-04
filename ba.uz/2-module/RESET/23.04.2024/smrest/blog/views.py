@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -56,6 +57,21 @@ class PostListAPIView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
+
+
+class PostFollowersListAPIView(ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = MyUser.objects.filter(user_id=self.request.user.id).first()
+        following_ids = FollowMyUser.objects.filter(follower=user).values('following_id')
+        if following_ids:
+            posts = Post.objects.filter(author_id__in=following_ids)
+        else:
+            posts = Post.objects.filter(author_id=user.id)
+        return posts
 
 
 class PostCreateAPIView(CreateAPIView):
@@ -225,6 +241,23 @@ class FollowCreateAPIView(CreateAPIView):
                     "status": "Followed"
                 }
             )
+
+
+class SearchPostListAPIView(ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def get_queryset(self):
+        keyword = self.request.data.get('keyword')
+        category = Category.objects.filter(name__icontains=keyword).values('id')
+        for i in category:
+            print(i)
+        posts = Post.objects.filter(
+            Q(title__icontains=keyword) | Q(content__icontains=keyword) | Q(category__name__icontains=keyword) | Q(
+                commentpost__message__icontains=keyword))
+        if posts:
+            return posts
 
 
 @api_view(['GET'])

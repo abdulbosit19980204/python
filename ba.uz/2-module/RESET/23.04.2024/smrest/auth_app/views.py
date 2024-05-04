@@ -37,7 +37,7 @@ class UserCreateAPIView(CreateAPIView):
     def post(self, request):
         data = request.data
         is_registered = User.objects.filter(username=data['username']).exists()
-        print(is_registered)
+        # print(is_registered)
         if is_registered is False:
             user = User.objects.create(username=data['username'], email=data['email'],
                                        password=make_password(data['password']))

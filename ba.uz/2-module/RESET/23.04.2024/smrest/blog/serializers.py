@@ -41,6 +41,11 @@ class CommentSerializer(serializers.ModelSerializer):
         model = CommentPost
         fields = '__all__'
 
+    def save(self, **kwargs):
+        user = self.context['request'].user
+        print(user)
+        return super().save(**kwargs)
+
 
 class MyUserSerializer(serializers.ModelSerializer):
     class Meta:
