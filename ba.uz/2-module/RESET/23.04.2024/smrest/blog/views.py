@@ -209,7 +209,7 @@ class FollowCreateAPIView(CreateAPIView):
         following = MyUser.objects.filter(user_id=request.data.get('following_id')).first()
 
         is_followed = FollowMyUser.objects.filter(follower=follower, following=following).first()
-        if not is_followed:
+        if not is_followed:  # and follower.id != following.id
             follow = FollowMyUser.objects.create(follower=follower, following=following)
             follow.save()
 
@@ -243,6 +243,17 @@ class FollowCreateAPIView(CreateAPIView):
             )
 
 
+class FollowersListAPIView(ListAPIView):
+    queryset = FollowMyUser.objects.all()
+    serializer_class = MyUserSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def get_queryset(self):
+        user = MyUser.objects.get(user_id=self.request.user.id)
+        followers = FollowMyUser.objects.filter(follower=user)
+        return followers
+
+
 class SearchPostListAPIView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -250,9 +261,6 @@ class SearchPostListAPIView(ListAPIView):
 
     def get_queryset(self):
         keyword = self.request.data.get('keyword')
-        category = Category.objects.filter(name__icontains=keyword).values('id')
-        for i in category:
-            print(i)
         posts = Post.objects.filter(
             Q(title__icontains=keyword) | Q(content__icontains=keyword) | Q(category__name__icontains=keyword) | Q(
                 commentpost__message__icontains=keyword))
