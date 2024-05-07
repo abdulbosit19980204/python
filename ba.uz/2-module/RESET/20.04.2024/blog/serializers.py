@@ -10,6 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
+        data['posts_count'] = Post.objects.filter(category_id=instance.id).count()
         data['posts'] = PostSerializer(Post.objects.filter(category_id=instance.id), many=True).data
         return data
 
@@ -21,6 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
+        data['comments_count'] = Comment.objects.filter(post_id=instance.id).count()
         data['comments'] = CommentSerializer(Comment.objects.filter(post_id=instance.id), many=True).data
         return data
 

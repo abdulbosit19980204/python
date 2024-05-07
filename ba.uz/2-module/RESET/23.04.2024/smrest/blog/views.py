@@ -11,7 +11,8 @@ from django.contrib.auth.models import User
 
 from .models import Post, CommentPost, LikePost, FavoritePost, MyUser, FollowMyUser, Notification, Category
 from .serializers import PostSerializer, CommentSerializer, CategorySerializer, MyUserSerializer
-from .mixins import CreateDeleteUpdateAPIView
+from .mixins import UpdateDestroyAPIView
+from .permissions import IsOwner
 
 
 class CategoriesListAPIView(ListAPIView):
@@ -94,6 +95,12 @@ class PostCreateAPIView(CreateAPIView):
         )
 
 
+class PostUpdateDestroyAPIView(UpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated, IsOwner]
+
+
 class PostRetrieveAPIView(RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -145,6 +152,12 @@ class CommentCreateAPIView(CreateAPIView):
         )
 
 
+class CommentUpdateDestroyAPIView(UpdateDestroyAPIView):
+    queryset = CommentPost.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated, IsOwner]
+
+
 class LikePostListAPIView(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -184,6 +197,9 @@ class LikeCreateAPIView(CreateAPIView):
                 }
 
             )
+
+    def patch(self, request, *args, **kwargs):
+        return Response()
 
 
 class LikePostRetrieveAPIView(RetrieveUpdateDestroyAPIView):

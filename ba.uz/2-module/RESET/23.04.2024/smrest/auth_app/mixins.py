@@ -3,9 +3,8 @@ from rest_framework.generics import (ListAPIView, CreateAPIView,
                                      )
 
 
-class CreateDestroyAPIView(CreateAPIView, DestroyAPIView):
+class UpdateDestroyAPIView(UpdateAPIView, DestroyAPIView):
     pass
 
 
-class CreateUpdateAPIView(CreateAPIView, UpdateAPIView):
-    pass
+
